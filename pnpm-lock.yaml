@@ -27,7 +27,7 @@ dependencies:
     specifier: ^2.0.0
     version: registry.npmmirror.com/clsx@2.1.0
   next:
-    specifier: ^14.0.2
+    specifier: ^14.0.4
     version: registry.npmmirror.com/next@14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
   postcss:
     specifier: 8.4.31
@@ -44,6 +44,9 @@ dependencies:
   typescript:
     specifier: 5.2.2
     version: registry.npmmirror.com/typescript@5.2.2
+  use-debounce:
+    specifier: ^10.0.0
+    version: registry.npmmirror.com/use-debounce@10.0.0(react@18.2.0)
   zod:
     specifier: ^3.22.2
     version: registry.npmmirror.com/zod@3.22.4
@@ -4984,6 +4987,18 @@ packages:
     dependencies:
       punycode: registry.npmmirror.com/punycode@2.3.1
     dev: true
+
+  registry.npmmirror.com/use-debounce@10.0.0(react@18.2.0):
+    resolution: {integrity: sha512-XRjvlvCB46bah9IBXVnq/ACP2lxqXyZj0D9hj4K5OzNroMDpTEBg8Anuh1/UfRTRs7pLhQ+RiNxxwZu9+MVl1A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/use-debounce/-/use-debounce-10.0.0.tgz}
+    id: registry.npmmirror.com/use-debounce/10.0.0
+    name: use-debounce
+    version: 10.0.0
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: registry.npmmirror.com/react@18.2.0
+    dev: false
 
   registry.npmmirror.com/utf-8-validate@6.0.3:
     resolution: {integrity: sha512-uIuGf9TWQ/y+0Lp+KGZCMuJWc3N9BHA+l/UmHd/oUHwJJDeysyTRxNQVkbzsIWfGFbRe3OcgML/i0mvVRPOyDA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/utf-8-validate/-/utf-8-validate-6.0.3.tgz}

@@ -21,9 +21,13 @@ export async function fetchRevenue() {
     // console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
+    // const res = await fetch('http://192.168.9.70/v3/api-docs');
+    // const ddd = await res.json();
+    // console.log('fff', ddd?.openapi);
+
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
