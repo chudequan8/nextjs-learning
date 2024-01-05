@@ -10,6 +10,16 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
+export async function fetchSwaggerDocs(swaggerAddress?: string) {
+  if (!swaggerAddress) {
+    return null;
+  }
+  const res = await fetch(swaggerAddress);
+  const ddd = await res.json();
+  console.log('fff', ddd?.openapi);
+  return ddd;
+}
+
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
