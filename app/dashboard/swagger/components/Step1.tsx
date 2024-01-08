@@ -30,6 +30,7 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
     }
     const params = new URLSearchParams(searchParams);
     params.set('address', val);
+    params.delete('path');
     router.replace(`${pathname}?${params.toString()}`);
   };
 
@@ -69,6 +70,7 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
         ]}
       >
         <Select
+          showSearch
           options={pathList.map((item) => ({
             label: item,
             value: item,

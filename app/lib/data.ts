@@ -7,18 +7,16 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  SwaggerDocsResponse,
 } from './definitions';
 import { formatCurrency } from './utils';
+import request from './request';
 
-export async function fetchSwaggerDocs(swaggerAddress?: string) {
-  if (!swaggerAddress) {
-    return null;
-  }
-  const res = await fetch(swaggerAddress);
-  const ddd = await res.json();
-  console.log('fff', ddd?.openapi);
-  return ddd;
-}
+export const fetchSwaggerDocs = (swaggerAddress: string) =>
+  request<SwaggerDocsResponse>({
+    url: swaggerAddress,
+    method: 'GET',
+  });
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.

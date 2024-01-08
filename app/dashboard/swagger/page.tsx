@@ -24,15 +24,18 @@ const App: React.FC = async ({
   searchParams?: {
     query?: string;
     current?: string;
-    address: string;
+    address?: string;
+    path?: string;
   };
 }) => {
-  const swaggerDocs = await fetchSwaggerDocs(searchParams?.address);
+  const swaggerDocs = searchParams?.address
+    ? await fetchSwaggerDocs(searchParams.address)
+    : null;
 
   const current = Number(searchParams?.current) || 0;
 
   const contentStyle: React.CSSProperties = {
-    height: '260px',
+    // height: '260px',
     marginTop: 16,
   };
 
@@ -43,7 +46,9 @@ const App: React.FC = async ({
       <Steps current={current} items={items} />
       <div style={contentStyle}>
         {current === 0 && <Step1Page pathList={pathList} />}
-        {current === 1 && <Step2Page />}
+        {current === 1 && swaggerDocs && searchParams?.path && (
+          <Step2Page swaggerDocs={swaggerDocs} path={searchParams.path} />
+        )}
         {current === 2 && <div>Last-content</div>}
       </div>
       <ActionBar current={current} stepCount={items.length} />

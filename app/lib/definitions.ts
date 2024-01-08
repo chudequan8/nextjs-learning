@@ -86,3 +86,76 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+type ReqMethodTuple = ['get', 'post'];
+type ReqMethod = ReqMethodTuple[number];
+
+export type ReqMethodMap = Record<ReqMethod, SwaggerDocsInfo | undefined>;
+export type PathMap = Record<string, ReqMethodMap>;
+
+export type LinkSchema = {
+  $ref: string;
+};
+
+export type ComponentsMap = {
+  schemas: {
+    [key: string]: any;
+  };
+};
+
+export type SwaggerDocsResponse = {
+  paths: PathMap;
+  components: ComponentsMap;
+  [key: string]: any;
+};
+
+export type ReqParametersInfo = {
+  name: string;
+  in: string;
+  description?: string;
+  required: boolean;
+  schema: any;
+};
+
+export type SwaggerDocsInfo = {
+  /* API名称 */
+  summary: string;
+  /* API所属模块 */
+  tags: string[];
+  /* API描述 */
+  description: string;
+  /* API操作ID（不知道） */
+  operationId: string;
+  /* 请求参数（get请求） */
+  parameters?: ReqParametersInfo[];
+  /* 请求体（post请求） */
+  requestBody?: {
+    content: {
+      'application/json': {
+        schema: {
+          /* 真实schema引用路径，例：#/components/schemas/点赞作品请求参数对象 */
+          $ref: string;
+        };
+      };
+    };
+  };
+  responses: {
+    200: {
+      description?: string;
+      content: {
+        '*/*': {
+          schema: any;
+        };
+      };
+    };
+  };
+};
+
+export type ReqMethodOptions = {
+  url: string;
+  description: string;
+  method: ReqMethod;
+  operationId: string;
+  reqTypeName?: string;
+  resTypeName?: string;
+};
