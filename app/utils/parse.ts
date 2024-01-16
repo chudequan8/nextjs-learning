@@ -1,6 +1,18 @@
-import { generateRealSchema, generateTypes } from '@/app/utils/generate';
+import {
+  generateRealSchema,
+  generateTypeString,
+  generateTypes,
+} from '@/app/utils/generate';
 import { getRealSchema, isLinkSchema } from '@/app/utils';
-import { SwaggerDocsInfo, SwaggerDocsResponse } from '../lib/definitions';
+import {
+  LinkSchema,
+  NormalSchema,
+  SwaggerDocsInfo,
+  SwaggerDocsResponse,
+} from '../lib/definitions';
+import { formatTsString } from './format';
+
+type Ddd = [any[], any[]];
 
 export const parseReqGetObject = async (
   reqObject: SwaggerDocsInfo,
@@ -8,36 +20,71 @@ export const parseReqGetObject = async (
 ) => {
   const { parameters, description, operationId } = reqObject;
   if (parameters) {
-    const schemaList = parameters
-      .map((item) => {
-        if (isLinkSchema(item.schema)) {
-          const [typeName, schema] = getRealSchema(item.schema['$ref'], resObj);
-          return {
-            ...generateRealSchema(schema, resObj),
-            typeName,
-          };
+    const [nomalSchemaList, linkSchemaList] = parameters.reduce(
+      (target, current) => {
+        if (isLinkSchema(current.schema)) {
+          const [typeName, schema] = getRealSchema(
+            current.schema['$ref'],
+            resObj,
+          );
+          return [
+            target[0],
+            [
+              ...target[1],
+              {
+                ...generateRealSchema(schema, resObj),
+                typeName,
+              },
+            ],
+          ];
+        } else {
+          return [
+            [
+              ...target[0],
+              {
+                typeName: current.name,
+                description: current.description || current.name,
+                required: current.required,
+                ...current.schema,
+              },
+            ],
+            target[1],
+          ];
         }
-        const { name, description } = item;
-        return {
-          typeName: name,
-          description: description || name,
-          ...item.schema,
-        };
+      },
+      [[], []] as Ddd,
+    );
+
+    const normalTypeBodyString = nomalSchemaList
+      .map((item) => {
+        const { type, typeName, description, required } = item as any;
+        return generateTypeString({
+          key: typeName,
+          type,
+          description,
+          required,
+        });
       })
-      .filter(Boolean);
-    console.log('schemaList', schemaList);
-    if (schemaList.length) {
-      const typeStringMap = await generateTypes(schemaList as any[]);
-      console.log('typeStringMap', typeStringMap);
-      const reqParamsTypeString = `
-        /* ${description} ${operationId} */
-        type RequestParams = ${Object.keys(typeStringMap).join(' & ')}
-      `;
-      return {
-        RequestParams: reqParamsTypeString,
-        ...typeStringMap,
-      };
-    }
+      .join('');
+    const typeStringMap = await generateTypes(linkSchemaList as any[]);
+
+    const reqParamsTypeString = `
+      /* ${description} ${operationId} */
+      type RequestParams = ${[
+        ...(normalTypeBodyString
+          ? [
+              `{
+        ${normalTypeBodyString}
+      }`,
+            ]
+          : []),
+        ...Object.keys(typeStringMap),
+      ].join(' & ')}
+    `;
+    return {
+      RequestParams: await formatTsString(reqParamsTypeString),
+      ...typeStringMap,
+    };
   }
   return {};
 };
@@ -48,18 +95,17 @@ export const parseReqPostObject = async (
 ) => {
   const { requestBody } = reqObject;
   const schema = requestBody?.content?.['application/json']?.schema;
-  if (schema && isLinkSchema(schema)) {
-    const [typeName, targetSchema] = getRealSchema(schema['$ref'], resObj);
-    const schemaMap = {
-      ...generateRealSchema(targetSchema, resObj),
-      typeName,
-    };
-    const resTypeMap = await generateTypes([schemaMap]);
-    if (resTypeMap) {
-      return resTypeMap;
-    }
-  }
-  return {};
+
+  const [typeName, targetSchema] =
+    schema && isLinkSchema(schema)
+      ? getRealSchema(schema['$ref'], resObj)
+      : ['RequestParams', schema];
+  const schemaMap = {
+    ...generateRealSchema(targetSchema, resObj),
+    typeName,
+  };
+  const resTypeMap = await generateTypes([schemaMap]);
+  return resTypeMap || {};
 };
 
 export const parseResObject = async (
@@ -69,7 +115,7 @@ export const parseResObject = async (
   const resSchema = resObject?.['200']?.content?.['*/*']?.schema;
   if (resSchema && isLinkSchema(resSchema)) {
     const [typeName, targetSchema] = getRealSchema(resSchema['$ref'], resObj);
-    console.log('typeName', typeName);
+    // console.log('typeName', typeName);
     const schemaMap = {
       ...generateRealSchema(targetSchema, resObj),
       typeName,
@@ -82,7 +128,10 @@ export const parseResObject = async (
   return {};
 };
 
+export const toSchemaMap = async (schema: LinkSchema | NormalSchema) => {};
+
 export const parseReqObject = {
   get: parseReqGetObject,
   post: parseReqPostObject,
+  put: parseReqPostObject,
 };

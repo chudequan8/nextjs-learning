@@ -22,7 +22,9 @@ export const getRealSchema = (path: string, resObj: SwaggerDocsResponse) => {
 };
 
 export const getReq = (reqMethodObj: ReqMethodMap) => {
-  return Object.entries(reqMethodObj).flatMap(([key, val]) => [key, val]) as [
+  return Object.entries(reqMethodObj)
+    .filter(([key]) => ['get', 'post', 'put'].includes(key))
+    .flatMap(([key, val]) => [key, val]) as [
     keyof ReqMethodMap,
     SwaggerDocsInfo,
   ];

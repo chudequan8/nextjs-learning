@@ -1,13 +1,38 @@
 import { isLinkSchema, getRealSchema } from '.';
-import { ReqMethodOptions, SwaggerDocsResponse } from '../lib/definitions';
-import { formatWithWrapper } from './format';
+import {
+  LinkSchema,
+  NormalSchema,
+  ReqMethodOptions,
+  SwaggerDocsResponse,
+} from '../lib/definitions';
+import { formatTsString } from './format';
 
-export const generateTypeString = (
-  key: string,
-  type: string,
+export const withTypeWrapper = (
+  typeName: string,
+  typeBody: string,
   description?: string,
-  isArray?: boolean,
 ) => {
+  return `
+    /* ${description || typeName} */
+    type ${typeName} = {
+      ${typeBody}
+    }
+  `;
+};
+
+export const generateTypeString = ({
+  key,
+  type,
+  description,
+  isArray,
+  required,
+}: {
+  key: string;
+  type: string;
+  description?: string;
+  isArray?: boolean;
+  required?: boolean;
+}) => {
   if (!['string', 'object', 'array', 'integer'].includes(type)) {
     console.log('type', type);
   }
@@ -26,7 +51,7 @@ export const generateTypeString = (
 
   return `
   /* ${description || key} */
-  ${key}: ${trueType}${isArray ? '[]' : ''};`;
+  ${key}${required ? '' : '?'}: ${trueType}${isArray ? '[]' : ''};`;
 };
 
 export const generateArrayType = (key: string, arraySchema: any) => {
@@ -35,10 +60,20 @@ export const generateArrayType = (key: string, arraySchema: any) => {
 
   if (items.type === 'object') {
     const { typeName, description: childDescription } = items as any;
-    return generateTypeString(key, typeName, childDescription, true);
+    return generateTypeString({
+      key,
+      type: typeName,
+      description: childDescription,
+      isArray: true,
+    });
   }
   // 这里可能有嵌套数组的情况，暂未考虑
-  return generateTypeString(key, childType, description, true);
+  return generateTypeString({
+    key,
+    type: childType,
+    description,
+    isArray: true,
+  });
 };
 
 export const generateTypes = async (needToGenerateTypes: any[]) => {
@@ -48,7 +83,7 @@ export const generateTypes = async (needToGenerateTypes: any[]) => {
     const curSchema = todoTypes.shift() as any;
     let target: string = '';
     if (curSchema.type === 'object') {
-      const { properties } = curSchema;
+      const { properties, required = [] } = curSchema;
 
       const typeBodyString = Object.entries(properties)
         .map(([key, value]) => {
@@ -59,34 +94,35 @@ export const generateTypes = async (needToGenerateTypes: any[]) => {
           }
           if (type === 'object' && (value as any).properties) {
             todoTypes.push(value as any);
-            return generateTypeString(
+            return generateTypeString({
               key,
-              (value as any).typeName,
+              type: (value as any).typeName,
               description,
-            );
+            });
           }
-          return generateTypeString((value as any).typeName, type, description);
+          return generateTypeString({
+            key: (value as any).typeName,
+            type,
+            description,
+            required: required.includes((value as any).typeName),
+          });
         })
         .join('');
-      target = await formatWithWrapper(
+      target = withTypeWrapper(
         curSchema.typeName,
         typeBodyString,
         curSchema.description,
       );
-    } else {
-      const { type, typeName, description } = curSchema as any;
-      const fff = generateTypeString(typeName, type, description);
-      // console.log('fff', fff);
     }
     if (!generatedTypes[curSchema.typeName]) {
-      generatedTypes[curSchema.typeName] = target;
+      generatedTypes[curSchema.typeName] = await formatTsString(target);
     }
   }
   return generatedTypes;
 };
 
 export const generateRealSchema = (
-  rootSchema: any,
+  rootSchema: LinkSchema | NormalSchema,
   resObj: SwaggerDocsResponse,
 ): any => {
   return {
@@ -122,11 +158,12 @@ const getReqMethodName = (
   options: Pick<ReqMethodOptions, 'method' | 'description' | 'operationId'>,
 ) => {
   const { method, description, operationId } = options;
+
   if (method === 'get') {
     return `fetch${operationId[0].toUpperCase()}${operationId.slice(1)}`;
   }
   if (description.includes('新增') || description.includes('编辑')) {
-    return;
+    return operationId;
   }
   return operationId;
 };

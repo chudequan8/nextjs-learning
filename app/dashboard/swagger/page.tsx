@@ -52,6 +52,13 @@ const App: React.FC = async ({
         {current === 2 && <div>Last-content</div>}
       </div>
       <ActionBar current={current} stepCount={items.length} />
+      <pre>
+        {JSON.stringify(
+          pathList.filter((path) => path.includes('/api/bankEnter/task')),
+          undefined,
+          2,
+        )}
+      </pre>
       <pre>{JSON.stringify(swaggerDocs, undefined, 2)}</pre>
     </>
   );

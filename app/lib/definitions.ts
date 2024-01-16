@@ -87,11 +87,13 @@ export type InvoiceForm = {
   status: 'pending' | 'paid';
 };
 
-type ReqMethodTuple = ['get', 'post'];
+type ReqMethodTuple = ['get', 'post', 'put'];
 type ReqMethod = ReqMethodTuple[number];
 
 export type ReqMethodMap = Record<ReqMethod, SwaggerDocsInfo | undefined>;
 export type PathMap = Record<string, ReqMethodMap>;
+
+export type NormalSchema = Record<string, any>;
 
 export type LinkSchema = {
   $ref: string;

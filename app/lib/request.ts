@@ -51,7 +51,7 @@ instance.interceptors.response.use(
       };
     }
 
-    if (res?.openapi) {
+    if (res?.openapi || res?.swagger) {
       return res;
     }
 
