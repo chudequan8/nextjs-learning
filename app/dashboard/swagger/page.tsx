@@ -25,7 +25,8 @@ const App: React.FC = async ({
     query?: string;
     current?: string;
     address?: string;
-    path?: string;
+    module?: string;
+    baseUrl?: string;
   };
 }) => {
   const swaggerDocs = searchParams?.address
@@ -39,27 +40,37 @@ const App: React.FC = async ({
     marginTop: 16,
   };
 
-  const pathList = Object.keys(swaggerDocs?.paths || {});
+  let startPath = searchParams?.baseUrl || '/';
+  startPath = startPath.endsWith("/") ? startPath : `${startPath}/`
+
+  const pathList = Object.keys(swaggerDocs?.paths || {}).reduce(
+    (target, current) => {
+      if (!current.startsWith(startPath)) {
+        return target;
+      }
+      const pathNameList = current.replace(startPath, '').split('/')
+      if (pathNameList[0] && !target.includes(pathNameList[0]) && pathNameList.length >= 2) {
+        return [
+          ...target,
+          pathNameList[0]
+        ]
+      }
+      return target;
+    },
+    [] as string[],
+  );
 
   return (
     <>
       <Steps current={current} items={items} />
       <div style={contentStyle}>
         {current === 0 && <Step1Page pathList={pathList} />}
-        {current === 1 && swaggerDocs && searchParams?.path && (
-          <Step2Page swaggerDocs={swaggerDocs} path={searchParams.path} />
+        {current === 1 && swaggerDocs && searchParams?.module && (
+          <Step2Page swaggerDocs={swaggerDocs} moduleName={searchParams.module} baseUrl={startPath} />
         )}
         {current === 2 && <div>Last-content</div>}
       </div>
       <ActionBar current={current} stepCount={items.length} />
-      <pre>
-        {JSON.stringify(
-          pathList.filter((path) => path.includes('/api/bankEnter/task')),
-          undefined,
-          2,
-        )}
-      </pre>
-      <pre>{JSON.stringify(swaggerDocs, undefined, 2)}</pre>
     </>
   );
 };

@@ -19,7 +19,7 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
   const goNext = (values: any) => {
     const params = new URLSearchParams(searchParams);
     params.set('current', '1');
-    params.set('path', values.path);
+    params.set('module', values.module);
     router.replace(`${pathname}?${params.toString()}`);
   };
 
@@ -30,9 +30,20 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
     }
     const params = new URLSearchParams(searchParams);
     params.set('address', val);
-    params.delete('path');
+    params.delete('baseUrl');
+    params.delete('module');
     router.replace(`${pathname}?${params.toString()}`);
   };
+
+  const baseUrlInputEnd = () => {
+    const val = form.getFieldValue('baseUrl');
+    if (!val) {
+      return;
+    }
+    const params = new URLSearchParams(searchParams);
+    params.set('baseUrl', val);
+    router.replace(`${pathname}?${params.toString()}`);
+  }
 
   return (
     <Form
@@ -44,7 +55,8 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
       }}
       initialValues={{
         address: searchParams.get('address')?.toString(),
-        path: searchParams.get('path')?.toString(),
+        baseUrl: searchParams.get('baseUrl')?.toString(),
+        module: searchParams.get('module')?.toString(),
       }}
     >
       <FormItem
@@ -59,13 +71,16 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
       >
         <Input onBlur={addressInputEnd} />
       </FormItem>
+      <FormItem label="请输入 baseUrl" name="baseUrl" >
+        <Input placeholder='请求接口的路由前缀，没有就填 /' onBlur={baseUrlInputEnd} />
+      </FormItem>
       <FormItem
-        label="请选择接口路径"
-        name="path"
+        label="请选择接口模块路径"
+        name="module"
         rules={[
           {
             required: true,
-            message: '请选择接口路径',
+            message: '请选择接口模块路径',
           },
         ]}
       >

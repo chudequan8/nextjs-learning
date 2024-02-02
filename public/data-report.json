@@ -1,0 +1,5959 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "直报系统",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "合作机构统计数据"
+    },
+    {
+      "name": "报表录入"
+    },
+    {
+      "name": "报表配置"
+    },
+    {
+      "name": "auth-controller"
+    },
+    {
+      "name": "流程引擎-任务审批"
+    },
+    {
+      "name": "报表上报统计"
+    },
+    {
+      "name": "字典相关接口"
+    }
+  ],
+  "paths": {
+    "/api/report/datasSubmit/deleted": {
+      "delete": {
+        "summary": "删除报表入录数据",
+        "deprecated": false,
+        "description": "",
+        "operationId": "deletedUsingDELETE",
+        "tags": [
+          "报表录入"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wholeDetailUsingGETId"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表录入",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382541-run"
+      }
+    },
+    "/api/report/form/list": {
+      "get": {
+        "summary": "查询报表配置列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getFormConfigListUsingGET",
+        "tags": [
+          "报表配置"
+        ],
+        "parameters": [
+          {
+            "name": "formName",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表配置",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382544-run"
+      }
+    },
+    "/api/report/getAuthInfo": {
+      "get": {
+        "summary": "getAuthInfo",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getAuthInfoUsingGET",
+        "tags": [
+          "auth-controller"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "auth-controller",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382545-run"
+      }
+    },
+    "/api/report/cooperateOrg/allOrgList": {
+      "get": {
+        "summary": "发送页面待选机构列表查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "allOrgListUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "organByName",
+            "in": "query",
+            "description": "organByName",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679356-run"
+      }
+    },
+    "/api/report/statistics/counts": {
+      "get": {
+        "summary": "报表上报统计总计",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getCountsUsingGET",
+        "tags": [
+          "报表上报统计"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "报表类型：单表-0；整表-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表上报统计",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119771012-run"
+      }
+    },
+    "/api/report/workflowDefinition/approve": {
+      "post": {
+        "summary": "审批通过",
+        "deprecated": false,
+        "description": "",
+        "operationId": "passProcessUsingPOST",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkflowApprovalReq"
+              },
+              "example": {
+                "entityId": "1719655740412882967",
+                "msg": "通过了",
+                "taskId": "",
+                "processInstanceId": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836951-run"
+      }
+    },
+    "/api/report/dict/list": {
+      "get": {
+        "summary": "根据names查询字典",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getFormConfigListUsingGET",
+        "tags": [
+          "字典相关接口"
+        ],
+        "parameters": [
+          {
+            "name": "names",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "directReportFormType,directReportDateType,directReportFlowStatus",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "字典相关接口",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-121897267-run"
+      }
+    },
+    "/api/report/workflowDefinition/callBack": {
+      "post": {
+        "summary": "直报回调",
+        "deprecated": false,
+        "description": "",
+        "operationId": "callBackUsingPOST",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": {
+                "_FLOWABLE_SKIP_EXPRESSION_ENABLED": true,
+                "processInstanceId": "fa83f3117c6011ee9e4bda4f9ae36ed8",
+                "form": {
+                  "entityName": "合作机构统计表_2022-05",
+                  "entityId": "1719655740412883003"
+                },
+                "initiator": "16977823403576d348",
+                "skip": true,
+                "requestSerialNo": "8a74a8e68b94968c018ba2feebed0005",
+                "processDefinitionKey": "ra74014b8b88cc32018b88cc327b0000"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-122371797-run"
+      }
+    },
+    "/api/report/cooperateOrg/whole/download": {
+      "get": {
+        "summary": "合作机构数据整表-下载",
+        "deprecated": false,
+        "description": "",
+        "operationId": "wholeDownloadUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1719655740412882951",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wholeDetailUsingGETId"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-122590146-run"
+      }
+    },
+    "/api/report/getMenus": {
+      "get": {
+        "summary": "getMenus",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getMenusUsingGET",
+        "tags": [
+          "auth-controller"
+        ],
+        "parameters": [
+          {
+            "name": "systemCode",
+            "in": "query",
+            "description": "systemCode",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "auth-controller",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382546-run"
+      }
+    },
+    "/api/report/workflowDefinition/approveOrgList": {
+      "get": {
+        "summary": "审批机构列表查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "approveOrgListUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382547-run"
+      }
+    },
+    "/api/report/cooperateOrg/receiveList": {
+      "get": {
+        "summary": "整表-接收列表查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "receiveListUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "createTime[0].year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateMonth",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateQuarter",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateYear",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "formName",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "orgCoder",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgName",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679357-run"
+      }
+    },
+    "/api/report/datasSubmit/finishList": {
+      "get": {
+        "summary": "审核后上报记录查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "finishListUsingGET",
+        "tags": [
+          "报表录入"
+        ],
+        "parameters": [
+          {
+            "name": "createTime[0].date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].day",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].hours",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].minutes",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].month",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].nanos",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].seconds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].time",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].timezoneOffset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateMonth",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateQuarter",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateYear",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "flowStatus",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formCoder",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formName",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "isDel",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "organBy",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateTime[0].date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].day",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].hours",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].minutes",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].month",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].nanos",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].seconds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].time",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].timezoneOffset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表录入",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679365-run"
+      }
+    },
+    "/api/report/statistics/orgRankingList": {
+      "get": {
+        "summary": "排行榜-上报机构统计",
+        "deprecated": false,
+        "description": "",
+        "operationId": "orgRankingListUsingGET",
+        "tags": [
+          "报表上报统计"
+        ],
+        "parameters": [
+          {
+            "name": "endTime.year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": [
+              "",
+              ""
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "报表类型：单表-0；整表-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": [
+              "",
+              ""
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表上报统计",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119771013-run"
+      }
+    },
+    "/api/report/datasSubmit/list": {
+      "get": {
+        "summary": "查询报表录入列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getPageListUsingGET",
+        "tags": [
+          "报表录入"
+        ],
+        "parameters": [
+          {
+            "name": "createTime[0].date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].day",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].hours",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].minutes",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].month",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].nanos",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].seconds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].time",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].timezoneOffset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "createTime[0].year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateMonth",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateQuarter",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateYear",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "flowStatus",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formCoder",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "isDel",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateTime[0].date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].day",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].hours",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].minutes",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].month",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].nanos",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].seconds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].time",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].timezoneOffset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "updateTime[0].year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表录入",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382542-run"
+      }
+    },
+    "/api/report/cooperateOrg/send": {
+      "post": {
+        "summary": "整表-发送",
+        "deprecated": false,
+        "description": "",
+        "operationId": "sendUsingPOST",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportSendToOrgsReq"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679358-run"
+      }
+    },
+    "/api/report/statistics/overallList": {
+      "get": {
+        "summary": "报表上报总体情况列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "overallListUsingGET",
+        "tags": [
+          "报表上报统计"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "报表类型：单表-0；整表-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limitSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表上报统计",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119771014-run"
+      }
+    },
+    "/api/report/workflowDefinition/getDetailByInstanceId": {
+      "get": {
+        "summary": "审批详情-任务详情查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getDetailByInstanceIdUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "detailType",
+            "in": "query",
+            "description": "detailType 1 我发起  2 待办  3已办",
+            "required": false,
+            "example": "2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "processInstanceId",
+            "in": "query",
+            "description": "processInstanceId",
+            "required": false,
+            "example": "88bb7360786511ee9227ca79c772a354",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836952-run"
+      }
+    },
+    "/api/report/cooperateOrg/sendOrgList": {
+      "get": {
+        "summary": "整表接收-发送对象列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "sendOrgListUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "sendOrgName",
+            "in": "query",
+            "description": "sendOrgName",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679359-run"
+      }
+    },
+    "/api/report/statistics/overallRankingList": {
+      "get": {
+        "summary": "排行榜-报表上报总体统计",
+        "deprecated": false,
+        "description": "",
+        "operationId": "overallRankingListUsingGET",
+        "tags": [
+          "报表上报统计"
+        ],
+        "parameters": [
+          {
+            "name": "endTime.date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.day",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.hours",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.minutes",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.month",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.nanos",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.seconds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.time",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.timezoneOffset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime.year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "报表类型：单表-0；整表-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.date",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.day",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.hours",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.minutes",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.month",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.nanos",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.seconds",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.time",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.timezoneOffset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime.year",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表上报统计",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119771015-run"
+      }
+    },
+    "/api/report/workflowDefinition/getModelList": {
+      "get": {
+        "summary": "模板列表查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getModelListUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836953-run"
+      }
+    },
+    "/api/report/datasSubmit/repeatCheck": {
+      "get": {
+        "summary": "校验是否重复上报",
+        "deprecated": false,
+        "description": "",
+        "operationId": "repeatCheckUsingGET",
+        "tags": [
+          "报表录入"
+        ],
+        "parameters": [
+          {
+            "name": "dateMonth",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateQuarter",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateType",
+            "in": "query",
+            "description": "数据时间类型：按月-0；按季-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateYear",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "flowStatus",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formCoder",
+            "in": "query",
+            "description": "报表编码",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "isDel",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表录入",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-121604371-run"
+      }
+    },
+    "/api/report/cooperateOrg/sendRecordList": {
+      "get": {
+        "summary": "整表-发送记录列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "wholeDetailUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wholeDetailUsingGETId"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679360-run"
+      }
+    },
+    "/api/report/datasSubmit/searchOrgList": {
+      "get": {
+        "summary": "上报机构列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "searchOrgListUsingGET",
+        "tags": [
+          "报表录入"
+        ],
+        "parameters": [
+          {
+            "name": "organByName",
+            "in": "query",
+            "description": "organByName",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表录入",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679366-run"
+      }
+    },
+    "/api/report/statistics/passRankingList": {
+      "get": {
+        "summary": "排行榜-报表审批通过统计",
+        "deprecated": false,
+        "description": "",
+        "operationId": "passRankingListUsingGET",
+        "tags": [
+          "报表上报统计"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "报表类型：单表-0；整表-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limitSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表上报统计",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119771016-run"
+      }
+    },
+    "/api/report/workflowDefinition/refuse": {
+      "post": {
+        "summary": "审批拒绝",
+        "deprecated": false,
+        "description": "",
+        "operationId": "refuseUsingPOST",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkflowApprovalReq"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836954-run"
+      }
+    },
+    "/api/report/cooperateOrg/single/addUpdate": {
+      "post": {
+        "summary": "新增修改-合作机构数据-单表录入",
+        "deprecated": false,
+        "description": "",
+        "operationId": "singleAddUpdateUsingPOST",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CooperateOrgSingleSaveReq"
+              },
+              "example": {
+                "id": "1719554795422294018",
+                "zbzryeMonth": 31,
+                "zbzryeYear": 12,
+                "zbbsMonth": 13,
+                "dateYear": 2023,
+                "zbbsYear": 14,
+                "zbbs": 15,
+                "monthBabs": 12,
+                "zbye": 13,
+                "zbzrye": 174,
+                "zbhsMonth": 16,
+                "formCoder": "1234",
+                "yearBabs": 159,
+                "monthBaje": 187,
+                "zbyeMonth": 163,
+                "dateType": 0,
+                "formType": 0,
+                "zbhs": 15,
+                "monthBahs": 124,
+                "yearBahs": 341,
+                "zbhsYear": 831,
+                "zbyeYear": 481,
+                "dateMonth": 4,
+                "yearBaje": 621
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382538-run"
+      }
+    },
+    "/api/report/statistics/refuseRankingList": {
+      "get": {
+        "summary": "排行榜-报表审批拒绝统计",
+        "deprecated": false,
+        "description": "",
+        "operationId": "refuseRankingListUsingGET",
+        "tags": [
+          "报表上报统计"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "报表类型：单表-0；整表-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limitSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "报表上报统计",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119771017-run"
+      }
+    },
+    "/api/report/workflowDefinition/selectWorkflowSuggest": {
+      "get": {
+        "summary": "审批记录列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "selectWorkflowSuggestUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "processInstanceId",
+            "in": "query",
+            "description": "processInstanceId",
+            "required": false,
+            "example": "3e799a29795d11eea2d5c25faa4ed5cd",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836955-run"
+      }
+    },
+    "/api/report/cooperateOrg/single/detail": {
+      "get": {
+        "summary": "合作机构数据单表查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "singleDetailUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wholeDetailUsingGETId"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382539-run"
+      }
+    },
+    "/api/report/workflowDefinition/toDoFinishTasksPageList": {
+      "get": {
+        "summary": "查询已办任务列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "toDoFinishTasksPageListUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "流程结束时间 yyyy-MM-dd",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelKey",
+            "in": "query",
+            "description": "任务模板key",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "流程开始时间 yyyy-MM-dd",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836956-run"
+      }
+    },
+    "/api/report/cooperateOrg/single/submit": {
+      "post": {
+        "summary": "提交-合作机构数据-单表入录",
+        "deprecated": false,
+        "description": "",
+        "operationId": "singleAddSubmitUsingPOST",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CooperateOrgSingleSubmitReq"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-118382540-run"
+      }
+    },
+    "/api/report/workflowDefinition/toDoMyProcessPageList": {
+      "get": {
+        "summary": "我发起的-任务列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "toDoMyProcessPageListUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "流程结束时间 yyyy-MM-dd",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelKey",
+            "in": "query",
+            "description": "任务模板key",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "流程开始时间 yyyy-MM-dd",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836957-run"
+      }
+    },
+    "/api/report/cooperateOrg/statisticList": {
+      "get": {
+        "summary": "合作机构数据-查询单表统计数据-树列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "getStatisticListUsingGET",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "dateMonth",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateQuarter",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateType",
+            "in": "query",
+            "description": "数据时间类型：按月-0；按季-1",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "dateYear",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "flowStatus",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formCoder",
+            "in": "query",
+            "description": "报表编码",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "formType",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "isDel",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679361-run"
+      }
+    },
+    "/api/report/workflowDefinition/toDoTasksPageList": {
+      "get": {
+        "summary": "查询待办任务列表",
+        "deprecated": false,
+        "description": "",
+        "operationId": "toDoTasksPageListUsingGET",
+        "tags": [
+          "流程引擎-任务审批"
+        ],
+        "parameters": [
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "流程结束时间 yyyy-MM-dd",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modelKey",
+            "in": "query",
+            "description": "任务模板key",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "3",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "流程开始时间 yyyy-MM-dd",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "流程引擎-任务审批",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-120836958-run"
+      }
+    },
+    "/api/report/cooperateOrg/whole/addUpdate": {
+      "post": {
+        "summary": "新增修改-合作机构数据-整表录入",
+        "deprecated": false,
+        "description": "",
+        "operationId": "wholeAddUpdateUsingPOST",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CooperateOrgWholeSaveReq"
+              },
+              "example": {
+                "dateMonth": 2,
+                "formType": 0,
+                "formCoder": "1234",
+                "dateType": 0,
+                "dateYear": 2023,
+                "parentList": [
+                  {
+                    "zbye": 363,
+                    "zbyeMonth": 350,
+                    "zbyeYear": 290,
+                    "zbzrye": 365,
+                    "zbzryeMonth": 204,
+                    "zbzryeYear": 90,
+                    "zbbs": "85",
+                    "zbbsMonth": "510",
+                    "zbbsYear": "195",
+                    "zbhs": "95",
+                    "zbhsMonth": "325",
+                    "zbhsYear": "75",
+                    "monthBabs": "310",
+                    "monthBahs": "130",
+                    "monthBaje": 190,
+                    "yearBabs": "275",
+                    "yearBahs": "165",
+                    "yearBaje": 141,
+                    "childrenList": [
+                      {
+                        "approveOrgName": "1661995421640d065b",
+                        "approveOrgCoder": "杭州市协同管理机构",
+                        "orgName": null,
+                        "orgCoder": null,
+                        "zbye": 219,
+                        "zbyeMonth": 210,
+                        "zbyeYear": 222,
+                        "zbzrye": 219,
+                        "zbzryeMonth": 142,
+                        "zbzryeYear": 66,
+                        "zbbs": "35",
+                        "zbbsMonth": "266",
+                        "zbbsYear": "117",
+                        "zbhs": "65",
+                        "zbhsMonth": "227",
+                        "zbhsYear": "45",
+                        "monthBabs": "202",
+                        "monthBahs": "78",
+                        "monthBaje": 138,
+                        "yearBabs": "205",
+                        "yearBahs": "107",
+                        "yearBaje": 59,
+                        "childrenList": [
+                          {
+                            "approveOrgName": "1661995421640d065b",
+                            "approveOrgCoder": "杭州市协同管理机构",
+                            "orgName": "杭州西湖融资担保有限公司",
+                            "orgCoder": "1679448542048f1560",
+                            "zbye": 75,
+                            "zbyeMonth": 70,
+                            "zbyeYear": 94,
+                            "zbzrye": 73,
+                            "zbzryeMonth": 10,
+                            "zbzryeYear": 52,
+                            "zbbs": "5",
+                            "zbbsMonth": "22",
+                            "zbbsYear": "39",
+                            "zbhs": "35",
+                            "zbhsMonth": "89",
+                            "zbhsYear": "15",
+                            "monthBabs": "74",
+                            "monthBahs": "26",
+                            "monthBaje": 56,
+                            "yearBabs": "85",
+                            "yearBahs": "69",
+                            "yearBaje": 14,
+                            "childrenList": null
+                          },
+                          {
+                            "approveOrgName": "1661995421640d065b",
+                            "approveOrgCoder": "杭州市协同管理机构",
+                            "orgName": "杭州农信融资担保有限公司",
+                            "orgCoder": "1661998341214f0f2e",
+                            "zbye": 72,
+                            "zbyeMonth": 70,
+                            "zbyeYear": 94,
+                            "zbzrye": 73,
+                            "zbzryeMonth": 101,
+                            "zbzryeYear": 2,
+                            "zbbs": "5",
+                            "zbbsMonth": "122",
+                            "zbbsYear": "39",
+                            "zbhs": "15",
+                            "zbhsMonth": "89",
+                            "zbhsYear": "15",
+                            "monthBabs": "74",
+                            "monthBahs": "26",
+                            "monthBaje": 56,
+                            "yearBabs": "85",
+                            "yearBahs": "9",
+                            "yearBaje": 4,
+                            "childrenList": null
+                          },
+                          {
+                            "approveOrgName": "1661995421640d065b",
+                            "approveOrgCoder": "杭州市协同管理机构",
+                            "orgName": "浙江中睿融资担保有限公司",
+                            "orgCoder": "16619984128280fdac",
+                            "zbye": 72,
+                            "zbyeMonth": 70,
+                            "zbyeYear": 34,
+                            "zbzrye": 73,
+                            "zbzryeMonth": 31,
+                            "zbzryeYear": 12,
+                            "zbbs": "25",
+                            "zbbsMonth": "122",
+                            "zbbsYear": "39",
+                            "zbhs": "15",
+                            "zbhsMonth": "49",
+                            "zbhsYear": "15",
+                            "monthBabs": "54",
+                            "monthBahs": "26",
+                            "monthBaje": 26,
+                            "yearBabs": "35",
+                            "yearBahs": "29",
+                            "yearBaje": 41,
+                            "childrenList": null
+                          }
+                        ]
+                      },
+                      {
+                        "approveOrgName": "166199551634492c3a",
+                        "approveOrgCoder": "温州市协同管理机构",
+                        "orgName": null,
+                        "orgCoder": null,
+                        "zbye": 144,
+                        "zbyeMonth": 140,
+                        "zbyeYear": 68,
+                        "zbzrye": 146,
+                        "zbzryeMonth": 62,
+                        "zbzryeYear": 24,
+                        "zbbs": "50",
+                        "zbbsMonth": "244",
+                        "zbbsYear": "78",
+                        "zbhs": "30",
+                        "zbhsMonth": "98",
+                        "zbhsYear": "30",
+                        "monthBabs": "108",
+                        "monthBahs": "52",
+                        "monthBaje": 52,
+                        "yearBabs": "70",
+                        "yearBahs": "58",
+                        "yearBaje": 82,
+                        "childrenList": [
+                          {
+                            "approveOrgName": "166199551634492c3a",
+                            "approveOrgCoder": "温州市协同管理机构",
+                            "orgName": "温州市融资担保有限公司",
+                            "orgCoder": "16619986215802905f",
+                            "zbye": 72,
+                            "zbyeMonth": 70,
+                            "zbyeYear": 34,
+                            "zbzrye": 73,
+                            "zbzryeMonth": 31,
+                            "zbzryeYear": 12,
+                            "zbbs": "25",
+                            "zbbsMonth": "122",
+                            "zbbsYear": "39",
+                            "zbhs": "15",
+                            "zbhsMonth": "49",
+                            "zbhsYear": "15",
+                            "monthBabs": "54",
+                            "monthBahs": "26",
+                            "monthBaje": 26,
+                            "yearBabs": "35",
+                            "yearBahs": "29",
+                            "yearBaje": 41,
+                            "childrenList": null
+                          },
+                          {
+                            "approveOrgName": "166199551634492c3a",
+                            "approveOrgCoder": "温州市协同管理机构",
+                            "orgName": "温州市信保融资担保有限公司",
+                            "orgCoder": "1661998768517cfed6",
+                            "zbye": 72,
+                            "zbyeMonth": 70,
+                            "zbyeYear": 34,
+                            "zbzrye": 73,
+                            "zbzryeMonth": 31,
+                            "zbzryeYear": 12,
+                            "zbbs": "25",
+                            "zbbsMonth": "122",
+                            "zbbsYear": "39",
+                            "zbhs": "15",
+                            "zbhsMonth": "49",
+                            "zbhsYear": "15",
+                            "monthBabs": "54",
+                            "monthBahs": "26",
+                            "monthBaje": 26,
+                            "yearBabs": "35",
+                            "yearBahs": "29",
+                            "yearBaje": 41,
+                            "childrenList": null
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679362-run"
+      }
+    },
+    "/api/report/cooperateOrg/whole/detail": {
+      "get": {
+        "summary": "合作机构数据整表查询",
+        "deprecated": false,
+        "description": "",
+        "operationId": "wholeDetailUsingGET_1",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wholeDetailUsingGETId"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679363-run"
+      }
+    },
+    "/api/report/cooperateOrg/whole/submit": {
+      "post": {
+        "summary": "提交-合作机构数据-整表入录",
+        "deprecated": false,
+        "description": "",
+        "operationId": "wholeAddSubmitUsingPOST",
+        "tags": [
+          "合作机构统计数据"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "{{Authorization}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CooperateOrgWholeSubmitReq"
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-orders": [],
+                  "properties": {},
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "合作机构统计数据",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/3376010/apis/api-119679364-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WorkflowApprovalReq": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "description": "业务Id"
+          },
+          "msg": {
+            "type": "string",
+            "description": "拒绝/通过 备注-意见"
+          },
+          "processInstanceId": {
+            "type": "string",
+            "description": "流程实例Id"
+          },
+          "taskId": {
+            "type": "string",
+            "description": "任务事项Id"
+          }
+        },
+        "title": "WorkflowApprovalReq",
+        "x-apifox-orders": [
+          "entityId",
+          "msg",
+          "processInstanceId",
+          "taskId"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "ReportSendToOrgsReq": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "id"
+          },
+          "receiveOrgCoders": {
+            "type": "string",
+            "description": "发送机构coder，英文逗号分隔"
+          },
+          "receiveOrgNames": {
+            "type": "string",
+            "description": "发送机构名称，英文逗号分隔"
+          }
+        },
+        "title": "ReportSendToOrgsReq",
+        "x-apifox-orders": [
+          "id",
+          "receiveOrgCoders",
+          "receiveOrgNames"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "ReportCooperateOrgStatisticsTreeListReq": {
+        "type": "object",
+        "properties": {
+          "approveOrgCoder": {
+            "type": "string",
+            "description": "审批机构编码"
+          },
+          "approveOrgName": {
+            "type": "string",
+            "description": "审批机构名称"
+          },
+          "childrenList": {
+            "type": "array",
+            "description": "合作机构数据-整表-子级列表",
+            "items": {
+              "$ref": "#/components/schemas/ReportCooperateOrgStatisticsTreeListReq"
+            }
+          },
+          "monthBabs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本月备案笔数"
+          },
+          "monthBahs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本月备案户数"
+          },
+          "monthBaje": {
+            "type": "number",
+            "description": "本月备案金额"
+          },
+          "orgCoder": {
+            "type": "string",
+            "description": "数据所属机构编码"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "数据所属机构名称"
+          },
+          "yearBabs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本年备案笔数"
+          },
+          "yearBahs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本年备案户数"
+          },
+          "yearBaje": {
+            "type": "number",
+            "description": "本年备案金额"
+          },
+          "zbbs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数"
+          },
+          "zbbsMonth": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数比月初"
+          },
+          "zbbsYear": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数比年初"
+          },
+          "zbhs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数"
+          },
+          "zbhsMonth": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数比月初"
+          },
+          "zbhsYear": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数比年初"
+          },
+          "zbye": {
+            "type": "number",
+            "description": "在保余额"
+          },
+          "zbyeMonth": {
+            "type": "number",
+            "description": "在保余额比月初"
+          },
+          "zbyeYear": {
+            "type": "number",
+            "description": "在保余额比年初"
+          },
+          "zbzrye": {
+            "type": "number",
+            "description": "在保责任余额"
+          },
+          "zbzryeMonth": {
+            "type": "number",
+            "description": "在保责任余额比月初"
+          },
+          "zbzryeYear": {
+            "type": "number",
+            "description": "在保责任余额比年初"
+          }
+        },
+        "title": "ReportCooperateOrgStatisticsTreeListReq",
+        "x-apifox-orders": [
+          "approveOrgCoder",
+          "approveOrgName",
+          "childrenList",
+          "monthBabs",
+          "monthBahs",
+          "monthBaje",
+          "orgCoder",
+          "orgName",
+          "yearBabs",
+          "yearBahs",
+          "yearBaje",
+          "zbbs",
+          "zbbsMonth",
+          "zbbsYear",
+          "zbhs",
+          "zbhsMonth",
+          "zbhsYear",
+          "zbye",
+          "zbyeMonth",
+          "zbyeYear",
+          "zbzrye",
+          "zbzryeMonth",
+          "zbzryeYear"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "CooperateOrgWholeSubmitReq": {
+        "type": "object",
+        "properties": {
+          "approveOrgCoder": {
+            "type": "string",
+            "description": "审批机构编码"
+          },
+          "approveOrgName": {
+            "type": "string",
+            "description": "审批机构名称"
+          },
+          "dateMonth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间月份"
+          },
+          "dateQuarter": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间季度"
+          },
+          "dateType": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据时间类型：按月-0；按季-1"
+          },
+          "dateYear": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间年份"
+          },
+          "formCoder": {
+            "type": "string",
+            "description": "报表编码"
+          },
+          "formType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "parentList": {
+            "type": "array",
+            "description": "合作机构数据-整表-父级列表",
+            "items": {
+              "$ref": "#/components/schemas/ReportCooperateOrgStatisticsTreeListReq"
+            }
+          }
+        },
+        "title": "CooperateOrgWholeSubmitReq",
+        "x-apifox-orders": [
+          "approveOrgCoder",
+          "approveOrgName",
+          "dateMonth",
+          "dateQuarter",
+          "dateType",
+          "dateYear",
+          "formCoder",
+          "formType",
+          "id",
+          "parentList"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "CooperateOrgWholeSaveReq": {
+        "type": "object",
+        "properties": {
+          "dateMonth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间月份"
+          },
+          "dateQuarter": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间季度"
+          },
+          "dateType": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据时间类型：按月-0；按季-1"
+          },
+          "dateYear": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间年份"
+          },
+          "formCoder": {
+            "type": "string",
+            "description": "报表编码"
+          },
+          "formType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "parentList": {
+            "type": "array",
+            "description": "合作机构数据-整表-父级列表",
+            "items": {
+              "$ref": "#/components/schemas/ReportCooperateOrgStatisticsTreeListReq"
+            }
+          }
+        },
+        "title": "CooperateOrgWholeSaveReq",
+        "x-apifox-orders": [
+          "dateMonth",
+          "dateQuarter",
+          "dateType",
+          "dateYear",
+          "formCoder",
+          "formType",
+          "id",
+          "parentList"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "CooperateOrgSingleSubmitReq": {
+        "type": "object",
+        "properties": {
+          "approveOrgCoder": {
+            "type": "string",
+            "description": "审批机构编码"
+          },
+          "approveOrgName": {
+            "type": "string",
+            "description": "审批机构名称"
+          },
+          "dateMonth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间月份"
+          },
+          "dateQuarter": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间季度"
+          },
+          "dateType": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据时间类型：按月-0；按季-1"
+          },
+          "dateYear": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间年份"
+          },
+          "formCoder": {
+            "type": "string",
+            "description": "报表编码"
+          },
+          "formType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "monthBabs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本月备案笔数"
+          },
+          "monthBahs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本月备案户数"
+          },
+          "monthBaje": {
+            "type": "number",
+            "description": "本月备案金额"
+          },
+          "orgCoder": {
+            "type": "string"
+          },
+          "orgName": {
+            "type": "string"
+          },
+          "yearBabs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本年备案笔数"
+          },
+          "yearBahs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本年备案户数"
+          },
+          "yearBaje": {
+            "type": "number",
+            "description": "本年备案金额"
+          },
+          "zbbs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数"
+          },
+          "zbbsMonth": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数比月初"
+          },
+          "zbbsYear": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数比年初"
+          },
+          "zbhs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数"
+          },
+          "zbhsMonth": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数比月初"
+          },
+          "zbhsYear": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数比年初"
+          },
+          "zbye": {
+            "type": "number",
+            "description": "在保余额"
+          },
+          "zbyeMonth": {
+            "type": "number",
+            "description": "在保余额比月初"
+          },
+          "zbyeYear": {
+            "type": "number",
+            "description": "在保余额比年初"
+          },
+          "zbzrye": {
+            "type": "number",
+            "description": "在保责任余额"
+          },
+          "zbzryeMonth": {
+            "type": "number",
+            "description": "在保责任余额比月初"
+          },
+          "zbzryeYear": {
+            "type": "number",
+            "description": "在保责任余额比年初"
+          }
+        },
+        "title": "CooperateOrgSingleSubmitReq",
+        "x-apifox-orders": [
+          "approveOrgCoder",
+          "approveOrgName",
+          "dateMonth",
+          "dateQuarter",
+          "dateType",
+          "dateYear",
+          "formCoder",
+          "formType",
+          "id",
+          "monthBabs",
+          "monthBahs",
+          "monthBaje",
+          "orgCoder",
+          "orgName",
+          "yearBabs",
+          "yearBahs",
+          "yearBaje",
+          "zbbs",
+          "zbbsMonth",
+          "zbbsYear",
+          "zbhs",
+          "zbhsMonth",
+          "zbhsYear",
+          "zbye",
+          "zbyeMonth",
+          "zbyeYear",
+          "zbzrye",
+          "zbzryeMonth",
+          "zbzryeYear"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "CooperateOrgSingleSaveReq": {
+        "type": "object",
+        "properties": {
+          "dateMonth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间月份"
+          },
+          "dateQuarter": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间季度"
+          },
+          "dateType": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据时间类型：按月-0；按季-1"
+          },
+          "dateYear": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数据报送时间年份"
+          },
+          "formCoder": {
+            "type": "string",
+            "description": "报表编码"
+          },
+          "formType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "monthBabs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本月备案笔数"
+          },
+          "monthBahs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本月备案户数"
+          },
+          "monthBaje": {
+            "type": "number",
+            "description": "本月备案金额"
+          },
+          "orgCoder": {
+            "type": "string"
+          },
+          "orgName": {
+            "type": "string"
+          },
+          "yearBabs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本年备案笔数"
+          },
+          "yearBahs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本年备案户数"
+          },
+          "yearBaje": {
+            "type": "number",
+            "description": "本年备案金额"
+          },
+          "zbbs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数"
+          },
+          "zbbsMonth": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数比月初"
+          },
+          "zbbsYear": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保笔数比年初"
+          },
+          "zbhs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数"
+          },
+          "zbhsMonth": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数比月初"
+          },
+          "zbhsYear": {
+            "type": "integer",
+            "format": "int64",
+            "description": "在保户数比年初"
+          },
+          "zbye": {
+            "type": "number",
+            "description": "在保余额"
+          },
+          "zbyeMonth": {
+            "type": "number",
+            "description": "在保余额比月初"
+          },
+          "zbyeYear": {
+            "type": "number",
+            "description": "在保余额比年初"
+          },
+          "zbzrye": {
+            "type": "number",
+            "description": "在保责任余额"
+          },
+          "zbzryeMonth": {
+            "type": "number",
+            "description": "在保责任余额比月初"
+          },
+          "zbzryeYear": {
+            "type": "number",
+            "description": "在保责任余额比年初"
+          }
+        },
+        "title": "CooperateOrgSingleSaveReq",
+        "x-apifox-orders": [
+          "dateMonth",
+          "dateQuarter",
+          "dateType",
+          "dateYear",
+          "formCoder",
+          "formType",
+          "id",
+          "monthBabs",
+          "monthBahs",
+          "monthBaje",
+          "orgCoder",
+          "orgName",
+          "yearBabs",
+          "yearBahs",
+          "yearBaje",
+          "zbbs",
+          "zbbsMonth",
+          "zbbsYear",
+          "zbhs",
+          "zbhsMonth",
+          "zbhsYear",
+          "zbye",
+          "zbyeMonth",
+          "zbyeYear",
+          "zbzrye",
+          "zbzryeMonth",
+          "zbzryeYear"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      },
+      "wholeDetailUsingGETId": {
+        "type": "integer",
+        "format": "int64",
+        "x-apifox-folder": "RequestBodies"
+      },
+      "singleDetailUsingGETId": {
+        "type": "integer",
+        "format": "int64",
+        "x-apifox-folder": "RequestBodies"
+      },
+      "BaseResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "object",
+            "x-apifox-orders": [],
+            "properties": {},
+            "x-apifox-ignore-properties": []
+          },
+          "msg": {
+            "type": "string"
+          }
+        },
+        "title": "BaseResponse",
+        "x-apifox-orders": [
+          "code",
+          "data",
+          "msg"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "Schemas"
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": []
+}
