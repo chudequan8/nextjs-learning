@@ -14,7 +14,7 @@ import request from './request';
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: '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'
 });
 
 export const fetchSwaggerDocs = (swaggerAddress: string) =>
