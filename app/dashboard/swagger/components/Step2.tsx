@@ -40,7 +40,7 @@ const Step2Page: FC<Step2PageProps> = ({
       const todoSchemas = swaggerDocsByModule
         .flatMap((swaggerDoc) => {
           const { req, res } = swaggerDoc;
-          return [...Object.values(req?.query || {}), req?.body?.request, res];
+          return [...Object.values(req?.query || {}), (req?.body as any)?.request, res];
         })
         .filter(Boolean) as Swagger.ParsedSchema[];
 
