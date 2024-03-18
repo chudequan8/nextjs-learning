@@ -70,7 +70,7 @@ class SwaggerV2ToTs {
 
   generateSchemaLoop(root: Swagger.UnparseSchema): Swagger.ParsedSchema {
     if (this.isLinkSchema(root)) {
-      const [name, schema] = this.getRealSchema(root['$ref']);
+      const [name = '', schema] = this.getRealSchema(root['$ref']);
       // 保存下获取过的，有的话直接取，避免死循环
       // 代码可能还有问题，没测试过
       if (this._getedSchemaMap[name]) {
@@ -248,9 +248,9 @@ class SwaggerV2ToTs {
     }
 
     let reqTypeName: string;
-    if (req?.body?.request) {
-      if (this._isNameSchema(req.body.request)) {
-        reqTypeName = `${typePrefix}${req.body.request.name}`;
+    if ((req?.body as any)?.request) {
+      if (this._isNameSchema((req?.body as any).request)) {
+        reqTypeName = `${typePrefix}${(req?.body as any).request.name}`;
       } else {
         // 因为没有 key，所以无法转换，只能用 any
         reqTypeName = 'any';
