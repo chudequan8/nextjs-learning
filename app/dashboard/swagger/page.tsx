@@ -29,9 +29,14 @@ const App: React.FC = async ({
     baseUrl?: string;
   };
 }) => {
-  const swaggerDocs = searchParams?.address
-    ? await fetchSwaggerDocs(searchParams.address)
-    : null;
+  let swaggerDocs: Swagger.Response | SwaggerV2.Response | null;
+  try {
+    swaggerDocs = searchParams?.address
+      ? await fetchSwaggerDocs(searchParams.address)
+      : null;
+  } catch (err) {
+    throw(err)
+  }
 
   const current = Number(searchParams?.current) || 0;
 

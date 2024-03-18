@@ -2,6 +2,7 @@ import type { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 const instance = axios.create({
   baseURL: '/api',
+  timeout: 5000,
 });
 
 instance.interceptors.request.use((config) => {
@@ -78,9 +79,7 @@ instance.interceptors.response.use(
       // 派发登出事件
       // setTimeout(doLogout, 1000);
     }
-    if (err.message) {
-      console.log(err.message || '请求失败');
-    }
+    throw(err);
   },
 );
 

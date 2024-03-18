@@ -1,12 +1,16 @@
-import pascalcase from 'pascalcase';
+type KeyInfo = {
+  description: string;
+  example: string;
+  type: string;
+};
 
-class SwaggerToTs {
-  swaggerDocs: Swagger.Response;
+class SwaggerV2ToTs {
+  swaggerDocs: SwaggerV2.Response;
   baseUrl: string = '/';
   moduleName: string | undefined;
   generatedTypes: Record<string, string> = {};
   _getedSchemaMap: Record<string, any> = {};
-  constructor(swaggerDocs: Swagger.Response, baseUrl?: string) {
+  constructor(swaggerDocs: SwaggerV2.Response, baseUrl?: string) {
     this.swaggerDocs = swaggerDocs;
     this.baseUrl = baseUrl || '/';
   }
@@ -28,31 +32,40 @@ class SwaggerToTs {
     if (!str) {
       return '';
     }
-    return pascalcase(str);
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   private _replaceType(typeString: string) {
     const typeReg = new RegExp(/«([^«»]*)»/g);
-    let targetString = typeString;
-    while (typeReg.test(targetString)) {
-      targetString = targetString.replace(typeReg, '');
-    }
+    // let targetString = typeString;
 
-    return targetString;
+    const matchStr = typeString.match(typeReg);
+    if (matchStr?.[0]) {
+      return matchStr[0].replaceAll(/[«»]/g, '');
+    }
+    return typeString;
+
+    // while (typeReg.test(targetString)) {
+    //   console.log('targetString.replace(typeReg)', targetString.replace(typeReg, ''))
+    //   targetString = targetString.replace(typeReg, '');
+    // }
+
+    // return targetString;
   }
 
   getRealSchema(path: string) {
-    const pathList = path.replace('#/', '').split('/');
+    const pathList = path
+      .replace('#/', '')
+      .replace('«boolean»', '')
+      .split('/')
+      .map((n) => this._replaceType(n));
     let curSchema: Record<string, any> = this.swaggerDocs;
     let curPath: string | undefined = undefined;
     while (pathList.length && !!curSchema) {
       curPath = pathList.shift() as string;
       curSchema = curSchema[curPath];
     }
-    return [
-      this._replaceType(curPath as string),
-      curSchema as Swagger.ObjectSchema,
-    ] as const;
+    return [curPath, curSchema as Swagger.ObjectSchema] as const;
   }
 
   generateSchemaLoop(root: Swagger.UnparseSchema): Swagger.ParsedSchema {
@@ -72,7 +85,8 @@ class SwaggerToTs {
         ...this.generateSchemaLoop(schema),
       } as Swagger.NamedSchema;
     }
-    return Object.entries(root).reduce((target, [key, value]) => {
+
+    return Object.entries(root || {}).reduce((target, [key, value]) => {
       if (this.isObject(value)) {
         return {
           ...target,
@@ -86,16 +100,8 @@ class SwaggerToTs {
     }, {}) as Swagger.ParsedSchema;
   }
 
-  generateReqSchema(apiInfo: Swagger.ApiInfo) {
-    const { requestBody, parameters } = apiInfo;
-    if (requestBody) {
-      const reqSchema = requestBody?.content?.['application/json']?.schema;
-      return this.isObject(reqSchema)
-        ? {
-            body: this.generateSchemaLoop(reqSchema),
-          }
-        : null;
-    }
+  generateReqSchema(apiInfo: SwaggerV2.ApiInfo) {
+    const { parameters } = apiInfo;
     if (parameters?.length) {
       // 先把header和name不符合规范的过滤掉，防止报错
       return parameters
@@ -125,8 +131,8 @@ class SwaggerToTs {
     return null;
   }
 
-  generateResSchema(apiInfo: Swagger.ApiInfo) {
-    const resSchema = apiInfo.responses?.['200']?.content?.['*/*']?.schema;
+  generateResSchema(apiInfo: SwaggerV2.ApiInfo) {
+    const resSchema = apiInfo.responses?.['200']?.schema;
     return this.isObject(resSchema) ? this.generateSchemaLoop(resSchema) : null;
   }
 
@@ -143,7 +149,7 @@ class SwaggerToTs {
         if (path.includes(startPath)) {
           const [reqMethod, apiInfo] = Object.entries(reqMethodMap).flatMap(
             (n) => n,
-          ) as [Swagger.ReqMethod, Swagger.ApiInfo];
+          ) as [SwaggerV2.ReqMethod, SwaggerV2.ApiInfo];
 
           const { description, summary, operationId } = apiInfo;
           return {
@@ -165,13 +171,19 @@ class SwaggerToTs {
   _getReqMethodName(options: Swagger.ParsedSchemaOptions) {
     const { method, description = '', operationId } = options;
     if (method === 'get') {
-      
-      return `fetch${this._camelToPascal(operationId)}`;
+      return `fetch${operationId[0].toUpperCase()}${operationId.slice(1)}`;
     }
     if (description.includes('新增') || description.includes('编辑')) {
       return operationId;
     }
     return operationId;
+  }
+
+  _isNameSchema(schema?: Swagger.ParsedSchema): schema is Swagger.NamedSchema {
+    if (!schema) {
+      return false;
+    }
+    return schema.type === 'object' && !!schema.name;
   }
 
   generateTypeValue(value: Swagger.ParsedSchema): string {
@@ -236,15 +248,15 @@ class SwaggerToTs {
     }
 
     let reqTypeName: string;
-    if (req?.body) {
-      if (this._isNameSchema(req.body)) {
-        reqTypeName = `${typePrefix}${req.body.name}`;
+    if (req?.body?.request) {
+      if (this._isNameSchema(req.body.request)) {
+        reqTypeName = `${typePrefix}${req.body.request.name}`;
       } else {
         // 因为没有 key，所以无法转换，只能用 any
         reqTypeName = 'any';
       }
     } else if (req?.query) {
-      const {normalType, namedType} = Object.entries(req.query).reduce(
+      const { normalType, namedType } = Object.entries(req.query).reduce(
         (target, [key, value]) => {
           const { normalType, namedType } = target;
           if (this._isNameSchema(value)) {
@@ -269,12 +281,18 @@ class SwaggerToTs {
           namedType: string[];
         },
       );
-      const normalTypeStringList = normalType?.length ? [`{
+      const normalTypeStringList = normalType?.length
+        ? [
+            `{
         ${normalType.join('\n')}
-      }`] : []
-      reqTypeName = [...normalTypeStringList, ...namedType].join(" & ")
+      }`,
+          ]
+        : [];
+      reqTypeName = [...normalTypeStringList, ...namedType].join(' & ');
     } else {
-      reqTypeName = `${typePrefix}${this._camelToPascal(operationId)}ReqParams`;
+      reqTypeName = `${typePrefix}${operationId[0].toUpperCase()}${operationId.slice(
+        1,
+      )}ReqParams`;
     }
 
     return reqTypeName
@@ -284,31 +302,30 @@ class SwaggerToTs {
         }
       : null;
   }
-
   generateReqMethod(options: Swagger.ParsedSchemaOptions) {
     const { description, summary, res, path, method } = options;
     const typePrefix = `API.${this._camelToPascal(this.moduleName)}.`;
     const reqPayload = this._getReqPayload(options, typePrefix);
+    let resTypeName: string | null = null;
+    if (res?.type === 'object' && res?.name === 'boolean') {
+      resTypeName = res.name;
+    } else {
+      resTypeName =
+        res?.type === 'object' && res.name ? `${typePrefix}${res.name}` : null;
+    }
 
-    const resTypeName =
-      res?.type === 'object' && res.name ? `${typePrefix}${res.name}` : null;
     return `
     /** @description ${description || summary} */
     export const ${this._getReqMethodName(options)} = (${
-      reqPayload ? `${reqPayload.key}: ${reqPayload.value}` : ''
+      reqPayload
+        ? `${reqPayload.key}: ${reqPayload.value.replaceAll('-', '')}`
+        : ''
     }) =>
       request<${resTypeName}>({
         url: ${reqPayload?.url || `"${path}"`},
         method: "${method}",
         ${reqPayload && !reqPayload.url ? reqPayload.key : ''}
       });`;
-  }
-
-  _isNameSchema(schema?: Swagger.ParsedSchema): schema is Swagger.NamedSchema {
-    if (!schema) {
-      return false;
-    }
-    return schema.type === 'object' && !!schema.name;
   }
 
   generateTypeList(schemas: Swagger.ParsedSchema[]) {
@@ -318,7 +335,7 @@ class SwaggerToTs {
     while (todoTypes.length) {
       const { name, properties, description } =
         todoTypes.shift() as Swagger.NamedSchema;
-      if (finishedTypes[name]) {
+      if (finishedTypes[name] || name === 'boolean') {
         continue;
       }
       if (this.generatedTypes[name]) {
@@ -343,7 +360,7 @@ class SwaggerToTs {
             .join('');
           const typeString = `
             /* ${description || name} */
-            export type ${name} = {
+            export type ${name.replaceAll('-', '')} = {
               ${typeBody}
             }
           `;
@@ -360,6 +377,53 @@ class SwaggerToTs {
     }
     `;
   }
+
+  // generateTypeValue(value: KeyInfo): string {
+  //   const { type } = value;
+  //   switch (type) {
+  //     case 'array': {
+  //       // const { items } = value;
+  //       // if (this._isNameSchema(items)) {
+  //       //   return `${items.name}[]`;
+  //       // }
+  //       // return `${this.generateTypeValue(items)}[]`;
+  //       return `any[]`;
+  //     }
+  //     case 'object': {
+  //       // if (this._isNameSchema(value)) {
+  //       //   return value.name;
+  //       // }
+  //       return 'Record<string, any>';
+  //     }
+  //     case 'integer':
+  //       return 'number';
+  //     case 'string':
+  //     default:
+  //       return 'string';
+  //   }
+  // }
+  // parse(val: ApiInfo) {
+  //   const typeBody = Object.entries(val)
+  //     .map(([key, options]) => {
+  //       // if (
+  //       //   options.type === 'array' &&
+  //       //   this._isNameSchema(options.items)
+  //       // ) {
+  //       //   todoTypes.push(childSchema.items);
+  //       // }
+  //       return `
+  //               /* ${options.description || key} */
+  //               ${key}: ${this.generateTypeValue(options)};`;
+  //     })
+  //     .join('');
+  //   // const typeString = `
+  //   //   /* ${description || name} */
+  //   //   export type ${name} = {
+  //   //     ${typeBody}
+  //   //   }
+  //   // `;
+  //   return typeBody;
+  // }
 }
 
-export default SwaggerToTs;
+export default SwaggerV2ToTs;

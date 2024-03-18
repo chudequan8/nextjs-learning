@@ -1,4 +1,4 @@
-type ReqMethodTuple = ["get", "post", "put", "delete"];
+type ReqMethodTuple = ['get', 'post', 'put', 'delete'];
 
 declare namespace Swagger {
   type ReqMethod = ReqMethodTuple[number];
@@ -10,30 +10,30 @@ declare namespace Swagger {
   };
 
   type StringSchema = {
-    type: "string";
-    format?: "binary" | "date-time";
+    type: 'string';
+    format?: 'binary' | 'date-time';
     description?: string;
   };
   type IntSchema = {
-    type: "integer";
-    format: "int32" | "int64";
+    type: 'integer';
+    format: 'int32' | 'int64';
     description?: string;
   };
   type ArraySchema = {
-    type: "array";
+    type: 'array';
     items: ParsedSchema;
     description?: string;
   };
 
   type ObjectSchema = {
-    type: "object";
+    type: 'object';
     properties: Record<string, ParsedSchema>;
     name?: string;
     description?: string;
     required?: string[];
   };
 
-  type NamedSchema = Omit<ObjectSchema, "name"> & {
+  type NamedSchema = Omit<ObjectSchema, 'name'> & {
     name: string;
   };
 
@@ -48,7 +48,7 @@ declare namespace Swagger {
   };
 
   type ParameterType = {
-    in: "path" | "query" | "body" | 'header';
+    in: 'path' | 'query' | 'body' | 'header';
     name: string;
     required?: boolean;
     schema: UnparseSchema;
@@ -68,7 +68,7 @@ declare namespace Swagger {
     /* 请求体（post请求） */
     requestBody?: {
       content: {
-        "application/json": {
+        'application/json': {
           schema: UnparseSchema;
         };
       };
@@ -77,7 +77,7 @@ declare namespace Swagger {
       200: {
         description?: string;
         content: {
-          "*/*": {
+          '*/*': {
             schema: UnparseSchema;
           };
         };
@@ -92,7 +92,10 @@ declare namespace Swagger {
     header?: any;
   };
 
-  type ParsedSchemaOptions = Pick<ApiInfo, "description" | "summary" | "operationId"> & {
+  type ParsedSchemaOptions = Pick<
+    ApiInfo,
+    'description' | 'summary' | 'operationId'
+  > & {
     path: string;
     method: ReqMethod;
     res: ParsedSchema | null;
@@ -110,4 +113,22 @@ declare namespace Swagger {
     components: ComponentsMap;
     [key: string]: any;
   };
+}
+
+declare namespace SwaggerV2 {
+  type ReqMethod = Swagger.ReqMethod;
+  type Response = {
+    paths: Swagger.PathMap;
+    definitions: Swagger.ComponentsMap;
+    swagger: '2.0';
+  };
+
+  type ApiInfo = Omit<Swagger.ApiInfo, 'requestBody' | 'responses'> & {
+    responses: {
+      200: {
+        description?: string;
+        schema: UnparseSchema;
+      };
+    };
+  }
 }
