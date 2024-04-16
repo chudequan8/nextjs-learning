@@ -27,15 +27,16 @@ const App: React.FC = async ({
     address?: string;
     module?: string;
     baseUrl?: string;
+    extractType?: string;
   };
 }) => {
-  let swaggerDocs: Swagger.Response | SwaggerV2.Response | null;
+  let swaggerDocs: Swagger.Response | SwaggerV2.ApiDocument | null;
   try {
     swaggerDocs = searchParams?.address
       ? await fetchSwaggerDocs(searchParams.address)
       : null;
   } catch (err) {
-    throw(err)
+    throw err;
   }
 
   const current = Number(searchParams?.current) || 0;
@@ -46,19 +47,20 @@ const App: React.FC = async ({
   };
 
   let startPath = searchParams?.baseUrl || '/';
-  startPath = startPath.endsWith("/") ? startPath : `${startPath}/`
+  startPath = startPath.endsWith('/') ? startPath : `${startPath}/`;
 
   const pathList = Object.keys(swaggerDocs?.paths || {}).reduce(
     (target, current) => {
       if (!current.startsWith(startPath)) {
         return target;
       }
-      const pathNameList = current.replace(startPath, '').split('/')
-      if (pathNameList[0] && !target.includes(pathNameList[0]) && pathNameList.length >= 2) {
-        return [
-          ...target,
-          pathNameList[0]
-        ]
+      const pathNameList = current.replace(startPath, '').split('/');
+      if (
+        pathNameList[0] &&
+        !target.includes(pathNameList[0]) &&
+        pathNameList.length >= 2
+      ) {
+        return [...target, pathNameList[0]];
       }
       return target;
     },
@@ -71,7 +73,7 @@ const App: React.FC = async ({
       <div style={contentStyle}>
         {current === 0 && <Step1Page pathList={pathList} />}
         {current === 1 && swaggerDocs && searchParams?.module && (
-          <Step2Page swaggerDocs={swaggerDocs} moduleName={searchParams.module} baseUrl={startPath} />
+          <Step2Page swaggerDocs={swaggerDocs} moduleName={searchParams.module} baseUrl={startPath} extractType={searchParams.extractType} />
         )}
         {current === 2 && <div>Last-content</div>}
       </div>

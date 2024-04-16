@@ -20,6 +20,7 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
     const params = new URLSearchParams(searchParams);
     params.set('current', '1');
     params.set('module', values.module);
+    params.set('extractType', values.extractType);
     router.replace(`${pathname}?${params.toString()}`);
   };
 
@@ -92,6 +93,9 @@ const Step1Page: FC<Step1PageProps> = ({ pathList }) => {
             key: item,
           }))}
         />
+      </FormItem>
+      <FormItem label="请输入要忽略的全局基础类型" name="extractType" >
+        <Input placeholder='基础类型，一般为框架自带最外层的包装类型，默认空' />
       </FormItem>
       <div style={{ marginTop: 24 }}>
         <Button type="primary" htmlType="submit">

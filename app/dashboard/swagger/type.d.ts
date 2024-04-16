@@ -115,20 +115,20 @@ declare namespace Swagger {
   };
 }
 
-declare namespace SwaggerV2 {
-  type ReqMethod = Swagger.ReqMethod;
-  type Response = {
-    paths: Swagger.PathMap;
-    definitions: Swagger.ComponentsMap;
-    swagger: '2.0';
-  };
+// declare namespace SwaggerV2 {
+//   type ReqMethod = Swagger.ReqMethod;
+//   type Response = {
+//     paths: Swagger.PathMap;
+//     definitions: Swagger.ComponentsMap;
+//     swagger: '2.0';
+//   };
 
-  type ApiInfo = Omit<Swagger.ApiInfo, 'requestBody' | 'responses'> & {
-    responses: {
-      200: {
-        description?: string;
-        schema: UnparseSchema;
-      };
-    };
-  }
-}
+//   type ApiInfo = Omit<Swagger.ApiInfo, 'requestBody' | 'responses'> & {
+//     responses: {
+//       200: {
+//         description?: string;
+//         schema: UnparseSchema;
+//       };
+//     };
+//   }
+// }

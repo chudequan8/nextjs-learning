@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
+import qs from "qs";
 const instance = axios.create({
   baseURL: '/api',
   timeout: 5000,
@@ -14,9 +15,13 @@ instance.interceptors.request.use((config) => {
   //   };
   // }
   if (config.method === 'get') {
-    const params = config.params ? JSON.stringify(config.params) : '';
-    if (params.length > 300) {
-      throw new Error('请求参数过长，请重新输入');
+    // const params = config.params ? JSON.stringify(config.params) : '';
+    // if (params.length > 300) {
+    //   throw new Error('请求参数过长，请重新输入');
+    // }
+    if (config.params) {
+      config.url = `${config.url}?${qs.stringify(config.params, { indices: false })}`;
+      config.params = undefined;
     }
   }
   // if (config.method === "post") {
@@ -26,7 +31,6 @@ instance.interceptors.request.use((config) => {
   //   };
   //   config.data = new URLSearchParams(config.data).toString();
   // }
-  // console.log('config', config);
   return config;
 });
 
@@ -34,7 +38,6 @@ instance.interceptors.response.use(
   (response) => {
     // 转化一下响应数据格式，添加一个boolean类型的success字段，提供给业务方判断！
     const res: any = response.data;
-
     if (response.config.responseType === 'blob') {
       return response;
     }
@@ -61,6 +64,10 @@ instance.interceptors.response.use(
         return res.data;
       }
       return res || null;
+    }
+    // 针对有道词典API返回处理
+    if (res.errorCode !== undefined) {
+      return res;
     }
 
     throw {
