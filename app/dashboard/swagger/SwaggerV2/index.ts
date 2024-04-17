@@ -160,7 +160,7 @@ class SwaggerV2ToTs {
       }
       curSchema = curSchema[curPath];
     }
-    return [curPath.replaceAll("-", ""), curSchema as Schema.ParsedObjectSchema] as const;
+    return [curPath.replaceAll("-", ""), curSchema as Schema.ParsedSchema];
   }
 
   generateSchemaLoop(rootSchema: Schema.AllSchemaWithRef): Schema.ParsedSchema | null {
