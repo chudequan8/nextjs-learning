@@ -168,7 +168,6 @@ class SwaggerV2ToTs {
       // 添加泛型标识，后续要转成'T'
       if (this._curGenericType && rootSchema.items["originalRef"] === this._curGenericType) {
         const { items, type, ...other } = rootSchema;
-        this._curGenericType = null;
         return {
           ...other,
           type: "generic",
@@ -179,7 +178,6 @@ class SwaggerV2ToTs {
       // 添加泛型标识，后续要转成'T'
       if (this._curGenericType && rootSchema["originalRef"] === this._curGenericType) {
         const { originalRef, $ref, ...other } = rootSchema;
-        this._curGenericType = null;
         return {
           ...other,
           type: "generic",

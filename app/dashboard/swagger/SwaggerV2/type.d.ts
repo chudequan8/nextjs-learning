@@ -13,7 +13,7 @@ declare namespace SwaggerV2 {
     typePrefix?: string;
     // 给生成的ts类型字段加?用的，暂时先不加
     useRequired?: boolean;
-    // 要提取的基础类型，一般为框架自带的全局通用返回，传入后该类型会被忽略
+    // 要忽略的基础类型，一般为框架自带的全局通用返回，传入后该类型会被忽略
     extractType?: string;
   };
 
