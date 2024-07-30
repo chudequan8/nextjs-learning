@@ -1,12 +1,12 @@
 # 第一阶段：构建
-FROM 18.20.4-alpine3.20 AS builder
+FROM node:18-alpine3.18 AS builder
 WORKDIR /app
 COPY . .
 RUN npm ci
 RUN npm run build
 
 # 第二阶段：运行时
-FROM 18.20.4-alpine3.20
+FROM node:18-alpine3.18
 WORKDIR /app
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
