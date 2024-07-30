@@ -160,13 +160,39 @@ async function seedRevenue(client) {
   }
 }
 
+async function seedSwagger(client) {
+  try {
+    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+    // Create the "swagger" table if it doesn't exist
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS swagger (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        upload_date DATE NOT NULL
+      );
+    `;
+
+    console.log(`Created "swagger" table`);
+
+    return {
+      createTable,
+      swagger: [],
+    };
+  } catch (error) {
+    console.error('Error seeding swagger:', error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
-  await seedUsers(client);
-  await seedCustomers(client);
-  await seedInvoices(client);
-  await seedRevenue(client);
+  // await seedUsers(client);
+  // await seedCustomers(client);
+  // await seedInvoices(client);
+  // await seedRevenue(client);
+  await seedSwagger(client);
 
   await client.end();
 }

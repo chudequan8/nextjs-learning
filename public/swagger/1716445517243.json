@@ -1,0 +1,7918 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger3.x接口文档",
+    "description": "Chaoverse-Backend前后端接口文档",
+    "contact": {
+      "name": "梁健深",
+      "email": "liangjianshen2010@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://comicomi.cloud:443",
+      "description": "Inferred Url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "3DMapping控制器",
+      "description": "Mapping Controller"
+    },
+    {
+      "name": "Dify控制器",
+      "description": "Dify Controller"
+    },
+    {
+      "name": "GPT控制器",
+      "description": "Gpt Controller"
+    },
+    {
+      "name": "MBTI控制器",
+      "description": "MBTI Controller"
+    },
+    {
+      "name": "beast-user-controller",
+      "description": "Beast User Controller"
+    },
+    {
+      "name": "sse-rest",
+      "description": "Sse Rest"
+    },
+    {
+      "name": "tao-hua-wu-controller",
+      "description": "Tao Hua Wu Controller"
+    },
+    {
+      "name": "区块链控制器",
+      "description": "Dig Ital Controller"
+    },
+    {
+      "name": "地址控制器",
+      "description": "Address Data Controller"
+    },
+    {
+      "name": "机械屏控制器",
+      "description": "Mechanical Controller"
+    },
+    {
+      "name": "灵境数据读取控制器",
+      "description": "Chao Data Controller"
+    },
+    {
+      "name": "用户作品前端控制器",
+      "description": "Art User Works Controller"
+    },
+    {
+      "name": "用户控制器",
+      "description": "User Controller"
+    },
+    {
+      "name": "经纬度距离控制器",
+      "description": "Spatial Controller"
+    },
+    {
+      "name": "虚拟店铺控制器",
+      "description": "Get Cere Shop Product Controller"
+    },
+    {
+      "name": "音游前端控制器",
+      "description": "Audio Tour Controller"
+    }
+  ],
+  "paths": {
+    "/address/insert": {
+      "get": {
+        "tags": [
+          "地址控制器"
+        ],
+        "summary": "getBridge",
+        "operationId": "getBridgeUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/userWorks/deleteMyArtwork": {
+      "post": {
+        "tags": [
+          "用户作品前端控制器"
+        ],
+        "summary": "删除作品",
+        "description": "删除作品",
+        "operationId": "deleteMyArtworkUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/删除作品作品请求参数对象"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/userWorks/getMyArtworks": {
+      "get": {
+        "tags": [
+          "用户作品前端控制器"
+        ],
+        "summary": "获取我的所有作品",
+        "description": "获取我的所有作品",
+        "operationId": "getMyArtworksUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«作品信息响应对象»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/userWorks/getTopLikedArtworks": {
+      "get": {
+        "tags": [
+          "用户作品前端控制器"
+        ],
+        "summary": "查询全局点赞数量最多的20个作品",
+        "description": "查询全局点赞数量最多的20个作品",
+        "operationId": "getTopLikedArtworksUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«查询全局点赞数量最多的20个作品响应对象»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/userWorks/likeArtwork": {
+      "post": {
+        "tags": [
+          "用户作品前端控制器"
+        ],
+        "summary": "点赞作品",
+        "description": "点赞作品",
+        "operationId": "likeArtworkUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/点赞作品请求参数对象"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/userWorks/submitMyArtwork": {
+      "post": {
+        "tags": [
+          "用户作品前端控制器"
+        ],
+        "summary": "提交作品",
+        "description": "提交作品",
+        "operationId": "submitMyArtworkUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/保存作品请求参数封装类"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«作品信息响应对象»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/audioTour/getMusicGameRankList": {
+      "get": {
+        "tags": [
+          "音游前端控制器"
+        ],
+        "summary": "获取队伍排行榜",
+        "description": "获取队伍排行榜",
+        "operationId": "getMusicGameRankListUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«队伍排行榜返回对象»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/audioTour/getMusicGameResultDetail": {
+      "get": {
+        "tags": [
+          "音游前端控制器"
+        ],
+        "summary": "获取某一个队伍结果的详情",
+        "description": "获取某一个队伍结果的详情",
+        "operationId": "getMusicGameResultDetailUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamUUID",
+            "in": "query",
+            "description": "teamUUID",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«队伍结果的详情对象»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/audioTour/recordMusicGameResult": {
+      "post": {
+        "tags": [
+          "音游前端控制器"
+        ],
+        "summary": "记录一局的游戏结果",
+        "description": "记录一局的游戏结果",
+        "operationId": "recordMusicGameResultUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/保存音游组队信息参数封装类"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«long»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/beastFancy": {
+      "post": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "BeastFancy",
+        "operationId": "BeastFancyUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BeastUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Experience»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/getAllBeast": {
+      "get": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "getAllBeast",
+        "operationId": "getAllBeastUsingGET",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "description": "roleId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«Beast»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/getBeastByFancy": {
+      "get": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "getBeastByFancy",
+        "operationId": "getBeastByFancyUsingGET",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "description": "roleId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«Beast»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/getBeastById": {
+      "get": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "getBeastById",
+        "operationId": "getBeastByIdUsingGET",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "description": "roleId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Beast»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/getBeastByUser": {
+      "get": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "getBeastList",
+        "operationId": "getBeastListUsingGET",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "description": "roleId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "birthday",
+            "in": "query",
+            "description": "birthday",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Beast»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/getBeastMedal": {
+      "get": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "getBeastMedal",
+        "operationId": "getBeastMedalUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«int»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/beast/getLunbo": {
+      "get": {
+        "tags": [
+          "beast-user-controller"
+        ],
+        "summary": "getLunBo",
+        "operationId": "getLunBoUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«Picture»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/chao/data_get": {
+      "get": {
+        "tags": [
+          "灵境数据读取控制器"
+        ],
+        "summary": "getData",
+        "operationId": "getDataUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_key",
+            "in": "query",
+            "description": "data_key",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/chao/data_store": {
+      "post": {
+        "tags": [
+          "灵境数据读取控制器"
+        ],
+        "summary": "DataStore",
+        "operationId": "DataStoreUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChaoData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dify": {
+      "post": {
+        "tags": [
+          "Dify控制器"
+        ],
+        "summary": "getDify",
+        "operationId": "getDifyUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AIDify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/download": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "下载数字证书",
+        "description": "下载数字证书",
+        "operationId": "downloadUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/getDigital": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "获取竖版证书信息",
+        "description": "获取竖版证书信息",
+        "operationId": "getDigitalUsingGET",
+        "parameters": [
+          {
+            "name": "scene",
+            "in": "query",
+            "description": "scene",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/getDigitalCertificate": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "获取我的数字证书",
+        "description": "获取我的数字证书",
+        "operationId": "getDigitalCertificateUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«DigitalCertificate»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/getNickName": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "获取用户名",
+        "description": "获取用户名",
+        "operationId": "getNickNameUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«h5»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/getUserAIPicture": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "获取我的所有潮艺资产",
+        "description": "获取我的所有潮艺资产",
+        "operationId": "getUserAIPictureUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«string»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/getUserDigital": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "获取我的链上数据",
+        "description": "四个链上数据的获取",
+        "operationId": "getUserDigitalUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Digital»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/getUserRadar": {
+      "get": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "获取数字资产分布",
+        "description": "获取数字资产分布",
+        "operationId": "getUserRadarUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Radar»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/digital/saveDigital": {
+      "post": {
+        "tags": [
+          "区块链控制器"
+        ],
+        "summary": "保存横板证书",
+        "description": "保存横板证书",
+        "operationId": "saveDigitalUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseVO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/getProductList": {
+      "get": {
+        "tags": [
+          "虚拟店铺控制器"
+        ],
+        "summary": "getProductList",
+        "operationId": "getProductListUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shopId",
+            "in": "query",
+            "description": "shopId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«店铺商品对象»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/getShopProduct": {
+      "get": {
+        "tags": [
+          "虚拟店铺控制器"
+        ],
+        "summary": "getShopProduct",
+        "operationId": "getShopProductUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "description": "productId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "skuId",
+            "in": "query",
+            "description": "skuId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "shopId",
+            "in": "query",
+            "description": "shopId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«店铺商品对象»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/getShopProductList": {
+      "get": {
+        "tags": [
+          "虚拟店铺控制器"
+        ],
+        "summary": "getShopProductList",
+        "operationId": "getShopProductListUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«店铺商品对象»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/gpt/ask": {
+      "post": {
+        "tags": [
+          "GPT控制器"
+        ],
+        "summary": "askPost",
+        "operationId": "askPostUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GptData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«GptData»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/gpt/ask_with_c": {
+      "post": {
+        "tags": [
+          "GPT控制器"
+        ],
+        "summary": "askPost1",
+        "operationId": "askPost1UsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GptData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«GptData»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/gpt/getSound": {
+      "get": {
+        "tags": [
+          "GPT控制器"
+        ],
+        "summary": "getSound",
+        "operationId": "getSoundUsingGET",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "key",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/gpt/soundAsk": {
+      "post": {
+        "tags": [
+          "GPT控制器"
+        ],
+        "summary": "soundAsk",
+        "operationId": "soundAskUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GptData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«GptData»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/gpt/trans_with_c": {
+      "post": {
+        "tags": [
+          "GPT控制器"
+        ],
+        "summary": "soundPost1",
+        "operationId": "soundPost1UsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GptData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«GptData»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/gpt/translate": {
+      "post": {
+        "tags": [
+          "GPT控制器"
+        ],
+        "summary": "soundPost",
+        "operationId": "soundPostUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GptData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«GptData»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping": {
+      "get": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "sendMessage",
+        "operationId": "sendMessageUsingGET",
+        "parameters": [
+          {
+            "name": "Code",
+            "in": "query",
+            "description": "Code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "description": "message",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/bridge": {
+      "post": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "getBridge",
+        "operationId": "getBridgeUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bridge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«object»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/bridge6": {
+      "post": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "getBridge6",
+        "operationId": "getBridge6UsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bridge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Bridge»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/getOrderDate": {
+      "get": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "获取预约时间段",
+        "description": "预约时间段前端展示，该接口只是获取用户是否预约了其中的某一时间段，如果预约了，前端置灰色",
+        "operationId": "getOrderDateUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/join": {
+      "get": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "joinMapping",
+        "operationId": "joinMappingUsingGET",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«boolean»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/open": {
+      "get": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "openStart",
+        "operationId": "openStartUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«boolean»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/orderDate": {
+      "post": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "天桥预约接口",
+        "description": "天桥预约接口",
+        "operationId": "orderBridgeDateUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderDate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/sendAvatar": {
+      "get": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "sendAvatar",
+        "operationId": "sendAvatarUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mapping/sendMapping": {
+      "get": {
+        "tags": [
+          "3DMapping控制器"
+        ],
+        "summary": "sendMapping",
+        "operationId": "sendMappingUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "in": "query",
+            "description": "content",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/confirmMBTI": {
+      "post": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "confirmMBTI",
+        "operationId": "confirmMBTIUsingPOST",
+        "parameters": [
+          {
+            "name": "head",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nickName",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getAIRank": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getAIRank",
+        "operationId": "getAIRankUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«AIRank»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getConfig": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getConfig",
+        "operationId": "getConfigUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«WoDiConfig»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getList": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getList",
+        "operationId": "getListUsingGET",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "tag",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«XunFuDes»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getMBTI": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getMBTI",
+        "operationId": "getMBTIUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«MBTIConfig»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getScene": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getScene",
+        "operationId": "getSceneUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«string»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getTame": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getTame",
+        "operationId": "getTameUsingGET",
+        "parameters": [
+          {
+            "name": "tameId",
+            "in": "query",
+            "description": "tameId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«XunFuDes»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getTip": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getTip",
+        "operationId": "getTipUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«XunFuDes»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/getXunFuRank": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "getXunFuRank",
+        "operationId": "getXunFuRankUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«AIRank»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/login": {
+      "get": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "login",
+        "operationId": "loginUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«MBITRole»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/play": {
+      "post": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "play",
+        "operationId": "playUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MBTI_Play"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/register": {
+      "post": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "register",
+        "operationId": "registerUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MBITRole"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/start": {
+      "post": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "start",
+        "operationId": "startUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MBTI_Play"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mbti/xunfu": {
+      "post": {
+        "tags": [
+          "MBTI控制器"
+        ],
+        "summary": "xunfu",
+        "operationId": "xunfuUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MBTI_Play"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mechanical/getDeviceId": {
+      "get": {
+        "tags": [
+          "机械屏控制器"
+        ],
+        "summary": "扫码成功推送接口",
+        "description": "扫码成功推送接口",
+        "operationId": "getDeviceIdUsingGET",
+        "parameters": [
+          {
+            "name": "codeId",
+            "in": "query",
+            "description": "codeId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mechanical/sendBarrage": {
+      "get": {
+        "tags": [
+          "机械屏控制器"
+        ],
+        "summary": "推送弹幕接口",
+        "description": "推送弹幕接口",
+        "operationId": "sendBarrageUsingGET",
+        "parameters": [
+          {
+            "name": "codeId",
+            "in": "query",
+            "description": "codeId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/mechanical/sendToken": {
+      "get": {
+        "tags": [
+          "机械屏控制器"
+        ],
+        "summary": "推送用户信息接口",
+        "description": "推送用户信息接口",
+        "operationId": "sendTokenUsingGET",
+        "parameters": [
+          {
+            "name": "codeId",
+            "in": "query",
+            "description": "codeId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/spatial/getRectangle": {
+      "get": {
+        "tags": [
+          "经纬度距离控制器"
+        ],
+        "summary": "getSpatial",
+        "operationId": "getSpatialUsingGET",
+        "parameters": [
+          {
+            "name": "distance",
+            "in": "query",
+            "description": "distance",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "longitude",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "latitude",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«Spatial»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/sse/sendMessage": {
+      "post": {
+        "tags": [
+          "sse-rest"
+        ],
+        "summary": "sendMessage",
+        "operationId": "sendMessageUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/sse/sendMessage1": {
+      "post": {
+        "tags": [
+          "sse-rest"
+        ],
+        "summary": "pushOne",
+        "operationId": "pushOneUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/execAI": {
+      "get": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "execAI",
+        "operationId": "execAIUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sex",
+            "in": "query",
+            "description": "sex",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "imgKey",
+            "in": "query",
+            "description": "imgKey",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/execAINew": {
+      "get": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "execAINew",
+        "operationId": "execAINewUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sex",
+            "in": "query",
+            "description": "sex",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "imgKey",
+            "in": "query",
+            "description": "imgKey",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/faceMerge": {
+      "get": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "faceMerge",
+        "operationId": "faceMergeUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "imgKey",
+            "in": "query",
+            "description": "imgKey",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sex",
+            "in": "query",
+            "description": "sex",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«FaceAI»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/faceMergeNew": {
+      "get": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "faceMergeNew",
+        "operationId": "faceMergeNewUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "imgKey",
+            "in": "query",
+            "description": "imgKey",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sex",
+            "in": "query",
+            "description": "sex",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«FaceAI»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/getRank": {
+      "get": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "getRank",
+        "operationId": "getRankUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/upload": {
+      "post": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "UpLoadImg",
+        "operationId": "UpLoadImgUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaoHuaWu"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/taohuawu/uploadImg": {
+      "post": {
+        "tags": [
+          "tao-hua-wu-controller"
+        ],
+        "summary": "uploadImg",
+        "operationId": "uploadImgUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaoHuaWu"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/addCoupon": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "addCoupon",
+        "operationId": "addCouponUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«boolean»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/addExperience": {
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "addExperience",
+        "operationId": "addExperienceUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Role"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«int»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/addTask": {
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "addTask",
+        "operationId": "addTaskUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/countApplet": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "countApplet",
+        "operationId": "countAppletUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/countGame": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "countGame",
+        "operationId": "countGameUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/countOffline": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "countOffline",
+        "operationId": "countOfflineUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/faceMerge": {
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "faceMerge",
+        "operationId": "faceMergeUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Role"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Image»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getChaoDaily": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getChaoDaily",
+        "operationId": "getChaoDailyUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«int»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getChaoValue": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getChaoValue",
+        "operationId": "getChaoValueUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«PersonData»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getDeviceId": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getDeviceId",
+        "operationId": "getDeviceIdUsingGET_1",
+        "parameters": [
+          {
+            "name": "deviceId2",
+            "in": "query",
+            "description": "deviceId2",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getDeviceIdNew": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getDeviceIdNew",
+        "operationId": "getDeviceIdNewUsingGET",
+        "parameters": [
+          {
+            "name": "deviceId2",
+            "in": "query",
+            "description": "deviceId2",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getExperience": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getExperience",
+        "operationId": "getExperienceUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«int»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getGameCount": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getGameCount",
+        "operationId": "getGameCountUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«GameCount»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getImageUrl": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getImageUrl",
+        "operationId": "getImageUrlUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Image»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getLevelConfig": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getLevelConfig",
+        "operationId": "getLevelConfigUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«ChaoConfig»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getOwner": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingPUT",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingPOST",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingDELETE",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingOPTIONS",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingHEAD",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingPATCH",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "trace": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getRole",
+        "operationId": "getRoleUsingTRACE",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleString»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/user/getPhoneNumber": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingGET",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingPUT",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingPOST",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingDELETE",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingOPTIONS",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingHEAD",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingPATCH",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "trace": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber",
+        "operationId": "getPhoneNumberUsingTRACE",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/user/getPhoneNumber1": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingGET",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingPUT",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingPOST",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingDELETE",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingOPTIONS",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingHEAD",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingPATCH",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "trace": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getPhoneNumber1",
+        "operationId": "getPhoneNumber1UsingTRACE",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/user/getShop": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getShop",
+        "operationId": "getShopUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«Shop»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getTask": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getTask",
+        "operationId": "getTaskUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«List«Task»»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getToken": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getToken",
+        "operationId": "getTokenUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«RoleToken»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/getWeather": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "getWeather",
+        "operationId": "getWeatherUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/isNew": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "isNew",
+        "operationId": "isNewUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«boolean»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/isNewUser": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "isNewUser",
+        "operationId": "isNewUserUsingGET",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "login",
+        "operationId": "loginUsingGET_1",
+        "parameters": [
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«Role»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "register",
+        "operationId": "registerUsingPOST_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Role"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/sendAvatar": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "sendAvatar",
+        "operationId": "sendAvatarUsingGET_1",
+        "parameters": [
+          {
+            "name": "deviceId2",
+            "in": "query",
+            "description": "deviceId2",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/sendAvatarNew": {
+      "get": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "sendAvatarNew",
+        "operationId": "sendAvatarNewUsingGET",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "query",
+            "description": "deviceId",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telephone",
+            "in": "query",
+            "description": "telephone",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/updateTask": {
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "updateTask",
+        "operationId": "updateTaskUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/upload": {
+      "post": {
+        "tags": [
+          "用户控制器"
+        ],
+        "summary": "UpLoadImg",
+        "operationId": "UpLoadImgUsingPOST_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Role"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultData«string»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AIDify": {
+        "title": "AIDify",
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          }
+        }
+      },
+      "AIRank": {
+        "title": "AIRank",
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nickName": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "string"
+          }
+        }
+      },
+      "BaseVO": {
+        "title": "BaseVO",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string"
+          }
+        }
+      },
+      "Beast": {
+        "title": "Beast",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "big_url": {
+            "type": "string"
+          },
+          "capacity": {
+            "type": "string"
+          },
+          "character": {
+            "type": "string"
+          },
+          "hipste_url": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "meet": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "modelUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parameter": {
+            "type": "string"
+          },
+          "symbolize": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "BeastUser": {
+        "title": "BeastUser",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "big_url": {
+            "type": "string"
+          },
+          "capacity": {
+            "type": "string"
+          },
+          "character": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "modelUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parameter": {
+            "type": "string"
+          },
+          "roleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "symbolize": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "Bridge": {
+        "title": "Bridge",
+        "type": "object",
+        "properties": {
+          "chapterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chapterName": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "nickName": {
+            "type": "string"
+          },
+          "objectName": {
+            "type": "string"
+          },
+          "orderTime": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "telephone": {
+            "type": "string"
+          }
+        }
+      },
+      "ChaoConfig": {
+        "title": "ChaoConfig",
+        "type": "object",
+        "properties": {
+          "achieve": {
+            "type": "number",
+            "format": "double"
+          },
+          "chao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chaoConfig": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Config"
+            }
+          },
+          "level": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "levelMedal": {
+            "type": "string"
+          }
+        }
+      },
+      "ChaoData": {
+        "title": "ChaoData",
+        "type": "object",
+        "properties": {
+          "data_key": {
+            "type": "string"
+          },
+          "data_value": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "Config": {
+        "title": "Config",
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "levelMedal": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Digital": {
+        "title": "Digital",
+        "type": "object",
+        "properties": {
+          "buyer": {
+            "type": "integer",
+            "description": "潮买",
+            "format": "int32"
+          },
+          "experience": {
+            "type": "integer",
+            "description": "潮力值",
+            "format": "int32"
+          },
+          "player": {
+            "type": "integer",
+            "description": "潮玩",
+            "format": "int32"
+          },
+          "social": {
+            "type": "integer",
+            "description": "社交数据",
+            "format": "int32"
+          }
+        }
+      },
+      "DigitalCertificate": {
+        "title": "DigitalCertificate",
+        "type": "object",
+        "properties": {
+          "currDate": {
+            "type": "string",
+            "description": "上链时间"
+          },
+          "currTime": {
+            "type": "integer",
+            "description": "上链时间戳",
+            "format": "int64"
+          },
+          "digitalName": {
+            "type": "string"
+          },
+          "digitalNumber": {
+            "type": "integer",
+            "description": "数字证书编号",
+            "format": "int32"
+          },
+          "hash": {
+            "type": "string",
+            "description": "上链哈希值"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imgUrl": {
+            "type": "string",
+            "description": "数字证书路径"
+          },
+          "roleId": {
+            "type": "string",
+            "description": "用户ID"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "title": {
+            "type": "string",
+            "description": "数字证书标题"
+          }
+        }
+      },
+      "Experience": {
+        "title": "Experience",
+        "type": "object",
+        "properties": {
+          "award": {
+            "type": "string"
+          },
+          "experience": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "experienceLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "FaceAI": {
+        "title": "FaceAI",
+        "type": "object",
+        "properties": {
+          "faceCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hashId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "userCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "GameCount": {
+        "title": "GameCount",
+        "type": "object",
+        "properties": {
+          "appletCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "curDate": {
+            "type": "string"
+          },
+          "gameCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offlineCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "GptData": {
+        "title": "GptData",
+        "type": "object",
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "ask": {
+            "type": "string"
+          },
+          "audio": {
+            "type": "string",
+            "format": "byte"
+          },
+          "cid": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary"
+          },
+          "needSound": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "soundKey": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Image": {
+        "title": "Image",
+        "type": "object",
+        "properties": {
+          "base64": {
+            "type": "string"
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string"
+          },
+          "generateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imgUrl": {
+            "type": "string"
+          },
+          "urlBig": {
+            "type": "string"
+          },
+          "urlLittle": {
+            "type": "string"
+          }
+        }
+      },
+      "InputStream": {
+        "title": "InputStream",
+        "type": "object"
+      },
+      "MBITRole": {
+        "title": "MBITRole",
+        "type": "object",
+        "properties": {
+          "roleName": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string"
+          }
+        }
+      },
+      "MBTIConfig": {
+        "title": "MBTIConfig",
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nickName": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          }
+        }
+      },
+      "MBTI_Play": {
+        "title": "MBTI_Play",
+        "type": "object",
+        "properties": {
+          "aiId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "moleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "win": {
+            "type": "boolean"
+          }
+        }
+      },
+      "OrderDate": {
+        "title": "OrderDate",
+        "type": "object",
+        "properties": {
+          "confessionName": {
+            "type": "string",
+            "description": "告白对象"
+          },
+          "orderDate": {
+            "type": "string",
+            "description": "预约时间"
+          },
+          "orderName": {
+            "type": "string",
+            "description": "预约昵称"
+          },
+          "orderWord": {
+            "type": "string",
+            "description": "告白对话"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "主键"
+          }
+        }
+      },
+      "PersonData": {
+        "title": "PersonData",
+        "type": "object",
+        "properties": {
+          "achieve": {
+            "type": "number",
+            "format": "double"
+          },
+          "art": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "artLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "business": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "businessLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "game": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gameLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "level": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "levelMedal": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "social": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "socialLimit": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Picture": {
+        "title": "Picture",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imgUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "Radar": {
+        "title": "Radar",
+        "type": "object",
+        "properties": {
+          "artCount": {
+            "type": "integer",
+            "description": "潮艺数",
+            "format": "int32"
+          },
+          "buyerCount": {
+            "type": "integer",
+            "description": "潮买",
+            "format": "int32"
+          },
+          "experience": {
+            "type": "integer",
+            "description": "潮力值",
+            "format": "int32"
+          },
+          "playerCount": {
+            "type": "integer",
+            "description": "潮玩",
+            "format": "int32"
+          },
+          "socialCount": {
+            "type": "integer",
+            "description": "社交数据",
+            "format": "int32"
+          }
+        }
+      },
+      "Resource": {
+        "title": "Resource",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "inputStream": {
+            "$ref": "#/components/schemas/InputStream"
+          },
+          "open": {
+            "type": "boolean"
+          },
+          "readable": {
+            "type": "boolean"
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "url": {
+            "type": "string",
+            "format": "url"
+          }
+        }
+      },
+      "ResultData«Beast»": {
+        "title": "ResultData«Beast»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Beast"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«Bridge»": {
+        "title": "ResultData«Bridge»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Bridge"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«ChaoConfig»": {
+        "title": "ResultData«ChaoConfig»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ChaoConfig"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«Digital»": {
+        "title": "ResultData«Digital»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Digital"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«Experience»": {
+        "title": "ResultData«Experience»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Experience"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«FaceAI»": {
+        "title": "ResultData«FaceAI»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/FaceAI"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«GptData»": {
+        "title": "ResultData«GptData»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GptData"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«Image»": {
+        "title": "ResultData«Image»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Image"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«AIRank»»": {
+        "title": "ResultData«List«AIRank»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AIRank"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«Beast»»": {
+        "title": "ResultData«List«Beast»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Beast"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«DigitalCertificate»»": {
+        "title": "ResultData«List«DigitalCertificate»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DigitalCertificate"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«GameCount»»": {
+        "title": "ResultData«List«GameCount»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameCount"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«MBTIConfig»»": {
+        "title": "ResultData«List«MBTIConfig»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MBTIConfig"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«Picture»»": {
+        "title": "ResultData«List«Picture»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Picture"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«Shop»»": {
+        "title": "ResultData«List«Shop»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Shop"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«Spatial»»": {
+        "title": "ResultData«List«Spatial»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Spatial"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«Task»»": {
+        "title": "ResultData«List«Task»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«XunFuDes»»": {
+        "title": "ResultData«List«XunFuDes»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/XunFuDes"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«string»»": {
+        "title": "ResultData«List«string»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«作品信息响应对象»»": {
+        "title": "ResultData«List«作品信息响应对象»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/作品信息响应对象"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«店铺商品对象»»": {
+        "title": "ResultData«List«店铺商品对象»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/店铺商品对象"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«查询全局点赞数量最多的20个作品响应对象»»": {
+        "title": "ResultData«List«查询全局点赞数量最多的20个作品响应对象»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/查询全局点赞数量最多的20个作品响应对象"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«队伍排行榜返回对象»»": {
+        "title": "ResultData«List«队伍排行榜返回对象»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/队伍排行榜返回对象"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«List«队伍结果的详情对象»»": {
+        "title": "ResultData«List«队伍结果的详情对象»»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/队伍结果的详情对象"
+            }
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«MBITRole»": {
+        "title": "ResultData«MBITRole»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MBITRole"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«PersonData»": {
+        "title": "ResultData«PersonData»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PersonData"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«Radar»": {
+        "title": "ResultData«Radar»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Radar"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«RoleString»": {
+        "title": "ResultData«RoleString»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/RoleString"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«RoleToken»": {
+        "title": "ResultData«RoleToken»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/RoleToken"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«Role»": {
+        "title": "ResultData«Role»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«WoDiConfig»": {
+        "title": "ResultData«WoDiConfig»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/WoDiConfig"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«XunFuDes»": {
+        "title": "ResultData«XunFuDes»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/XunFuDes"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«boolean»": {
+        "title": "ResultData«boolean»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "boolean"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«h5»": {
+        "title": "ResultData«h5»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/h5"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«int»": {
+        "title": "ResultData«int»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«long»": {
+        "title": "ResultData«long»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«object»": {
+        "title": "ResultData«object»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«string»": {
+        "title": "ResultData«string»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«作品信息响应对象»": {
+        "title": "ResultData«作品信息响应对象»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/作品信息响应对象"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResultData«店铺商品对象»": {
+        "title": "ResultData«店铺商品对象»",
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/店铺商品对象"
+          },
+          "date": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "returnCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Role": {
+        "title": "Role",
+        "type": "object",
+        "properties": {
+          "administrator": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "announce": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "base64": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createTime": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "deviceId": {
+            "type": "string"
+          },
+          "experience": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "head": {
+            "type": "string"
+          },
+          "height": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "homeland": {
+            "type": "string"
+          },
+          "imgUrl": {
+            "type": "string"
+          },
+          "isMate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "language": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loginState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "os": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "password": {
+            "type": "string"
+          },
+          "photoAlbum": {
+            "type": "string"
+          },
+          "picUrl": {
+            "type": "string"
+          },
+          "roleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "templet": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "RoleString": {
+        "title": "RoleString",
+        "type": "object",
+        "properties": {
+          "isMate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "RoleTask": {
+        "title": "RoleTask",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "missionState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string"
+          }
+        }
+      },
+      "RoleToken": {
+        "title": "RoleToken",
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Shop": {
+        "title": "Shop",
+        "type": "object",
+        "properties": {
+          "addCartCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string"
+          },
+          "liveCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salesVolume": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "visitCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Spatial": {
+        "title": "Spatial",
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "description": "纬度",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "经度",
+            "format": "double"
+          }
+        }
+      },
+      "TaoHuaWu": {
+        "title": "TaoHuaWu",
+        "type": "object",
+        "properties": {
+          "base64": {
+            "type": "string"
+          },
+          "deviceId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "imgKey": {
+            "type": "string"
+          },
+          "picName": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "Task": {
+        "title": "Task",
+        "type": "object",
+        "properties": {
+          "autoAccept": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "awards": {
+            "type": "string"
+          },
+          "expoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "hall": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "missionDes": {
+            "type": "string"
+          },
+          "missionState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "missionTitle": {
+            "type": "string"
+          },
+          "missionType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "npcID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "targets": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WoDiConfig": {
+        "title": "WoDiConfig",
+        "type": "object",
+        "properties": {
+          "aiId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "moleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mole_des": {
+            "type": "string"
+          },
+          "mole_title": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "XunFuDes": {
+        "title": "XunFuDes",
+        "type": "object",
+        "properties": {
+          "aiId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chat_first": {
+            "type": "string"
+          },
+          "competCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rate": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "tameDes": {
+            "type": "string"
+          },
+          "tameId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tip": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "viewCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "h5": {
+        "title": "h5",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "用户名"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "uuid"
+          }
+        }
+      },
+      "作品信息响应对象": {
+        "title": "作品信息响应对象",
+        "type": "object",
+        "properties": {
+          "artworkName": {
+            "type": "string",
+            "description": "作品名"
+          },
+          "artworkUUID": {
+            "type": "integer",
+            "description": "作品uuid",
+            "format": "int64"
+          },
+          "hash": {
+            "type": "string",
+            "description": "上链hash值"
+          },
+          "like": {
+            "type": "integer",
+            "description": "点赞状态：1:点赞  0:没有点赞/或已取消点赞",
+            "format": "int32"
+          },
+          "likeCount": {
+            "type": "integer",
+            "description": "点赞数",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string",
+            "description": "作品地址"
+          }
+        },
+        "description": "作品信息响应对象"
+      },
+      "保存作品请求参数封装类": {
+        "title": "保存作品请求参数封装类",
+        "type": "object",
+        "properties": {
+          "artworkName": {
+            "type": "string",
+            "description": "作品名"
+          },
+          "c_type": {
+            "type": "integer",
+            "description": "风格类型",
+            "format": "int32"
+          },
+          "hash": {
+            "type": "string",
+            "description": "hash值"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "prompt参数"
+          },
+          "similar": {
+            "type": "integer",
+            "description": "相似度",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "token": {
+            "type": "string",
+            "description": "token"
+          },
+          "url": {
+            "type": "string",
+            "description": "作品地址"
+          }
+        },
+        "description": "保存作品请求参数封装类"
+      },
+      "保存音游组队信息参数封装类": {
+        "title": "保存音游组队信息参数封装类",
+        "type": "object",
+        "properties": {
+          "playerList": {
+            "type": "array",
+            "description": "玩家信息列表",
+            "items": {
+              "$ref": "#/components/schemas/玩家信息对象"
+            }
+          },
+          "teamName": {
+            "type": "string",
+            "description": "队伍名称"
+          },
+          "teamScore": {
+            "type": "integer",
+            "description": "成员总分数",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "手机号"
+          }
+        },
+        "description": "保存音游组队信息参数封装类"
+      },
+      "删除作品作品请求参数对象": {
+        "title": "删除作品作品请求参数对象",
+        "type": "object",
+        "properties": {
+          "artworkUUID": {
+            "type": "integer",
+            "description": "作品artworkUUID",
+            "format": "int64"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "token": {
+            "type": "string",
+            "description": "token"
+          }
+        },
+        "description": "删除作品作品请求参数对象"
+      },
+      "店铺商品对象": {
+        "title": "店铺商品对象",
+        "type": "object",
+        "properties": {
+          "imgUrl": {
+            "type": "string",
+            "description": "商品图片路径"
+          },
+          "price": {
+            "type": "number",
+            "description": "商品价格",
+            "format": "bigdecimal"
+          },
+          "productId": {
+            "type": "integer",
+            "description": "商品ID",
+            "format": "int64"
+          },
+          "productName": {
+            "type": "string",
+            "description": "商品名称"
+          },
+          "productText": {
+            "type": "string",
+            "description": "商品简介"
+          },
+          "productType": {
+            "type": "integer",
+            "description": "商品类型",
+            "format": "int32"
+          },
+          "shopId": {
+            "type": "integer",
+            "description": "店铺ID",
+            "format": "int64"
+          },
+          "shopName": {
+            "type": "string",
+            "description": "店铺名称"
+          },
+          "shopPhone": {
+            "type": "string",
+            "description": "店铺负责人手机号"
+          },
+          "skuId": {
+            "type": "integer",
+            "description": "商品sku",
+            "format": "int32"
+          },
+          "stockNumber": {
+            "type": "integer",
+            "description": "商品库存",
+            "format": "int32"
+          },
+          "style": {
+            "type": "integer",
+            "description": "商品规格，0-单规格，1-多规格",
+            "format": "int32"
+          }
+        },
+        "description": "商品信息"
+      },
+      "查询全局点赞数量最多的20个作品响应对象": {
+        "title": "查询全局点赞数量最多的20个作品响应对象",
+        "type": "object",
+        "properties": {
+          "artworkName": {
+            "type": "string",
+            "description": "作品名"
+          },
+          "artworkUUID": {
+            "type": "integer",
+            "description": "作品uuid",
+            "format": "int64"
+          },
+          "authorName": {
+            "type": "string",
+            "description": "作者名"
+          },
+          "authorUUID": {
+            "type": "integer",
+            "description": "作者uuid",
+            "format": "int64"
+          },
+          "hash": {
+            "type": "string",
+            "description": "上链hash值"
+          },
+          "like": {
+            "type": "integer",
+            "description": "点赞状态：1:点赞  0:没有点赞/或已取消点赞",
+            "format": "int32"
+          },
+          "likeCount": {
+            "type": "integer",
+            "description": "点赞数",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string",
+            "description": "作品地址"
+          }
+        },
+        "description": "查询全局点赞数量最多的20个作品响应对象"
+      },
+      "点赞作品请求参数对象": {
+        "title": "点赞作品请求参数对象",
+        "type": "object",
+        "properties": {
+          "artworkUUID": {
+            "type": "integer",
+            "description": "作品artworkUUID",
+            "format": "int64"
+          },
+          "like": {
+            "type": "integer",
+            "description": "点赞类型：1:点赞  0:取消点赞",
+            "format": "int32"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "token": {
+            "type": "string",
+            "description": "token"
+          }
+        },
+        "description": "点赞作品请求参数对象"
+      },
+      "玩家信息对象": {
+        "title": "玩家信息对象",
+        "type": "object",
+        "properties": {
+          "fake": {
+            "type": "integer",
+            "description": "玩家类型：1:假人 0:真人",
+            "format": "int32"
+          },
+          "playerName": {
+            "type": "string",
+            "description": "玩家昵称"
+          },
+          "playerScore": {
+            "type": "integer",
+            "description": "玩家得分",
+            "format": "int32"
+          },
+          "playerUUID": {
+            "type": "integer",
+            "description": "玩家uuid",
+            "format": "int64"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "玩家手机号"
+          }
+        },
+        "description": "玩家信息对象"
+      },
+      "队伍排行榜返回对象": {
+        "title": "队伍排行榜返回对象",
+        "type": "object",
+        "properties": {
+          "teamName": {
+            "type": "string",
+            "description": "队伍名称"
+          },
+          "teamRank": {
+            "type": "integer",
+            "description": "队伍名次",
+            "format": "int32"
+          },
+          "teamScore": {
+            "type": "integer",
+            "description": "成员总分数",
+            "format": "int32"
+          },
+          "teamUUID": {
+            "type": "integer",
+            "description": "队伍uuid",
+            "format": "int64"
+          }
+        },
+        "description": "队伍排行榜返回对象"
+      },
+      "队伍结果的详情对象": {
+        "title": "队伍结果的详情对象",
+        "type": "object",
+        "properties": {
+          "playerCount": {
+            "type": "integer",
+            "description": "玩家场次",
+            "format": "int32"
+          },
+          "playerName": {
+            "type": "string",
+            "description": "玩家昵称"
+          },
+          "playerScore": {
+            "type": "integer",
+            "description": "玩家得分",
+            "format": "int32"
+          },
+          "playerUUID": {
+            "type": "integer",
+            "description": "玩家uuid",
+            "format": "int64"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "玩家手机号"
+          }
+        },
+        "description": "队伍结果的详情对象"
+      }
+    }
+  }
+}

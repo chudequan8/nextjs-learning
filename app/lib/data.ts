@@ -245,6 +245,23 @@ export async function fetchInvoicesPages(query: string) {
   }
 }
 
+export async function fetchSwaggerPages(query: string) {
+  try {
+    const count = await sql`SELECT COUNT(*)
+    FROM swagger
+    WHERE
+      swagger.name ILIKE ${`%${query}%`} OR
+      swagger.upload_date::text ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of swagger.');
+  }
+}
+
 export async function fetchInvoiceById(id: string) {
   try {
     const data = await sql<InvoiceForm>`

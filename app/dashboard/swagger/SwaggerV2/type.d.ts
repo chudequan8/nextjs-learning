@@ -1,9 +1,8 @@
-type ReqMethodTuple = ["get", "post", "put", "delete"];
+type ReqMethodTuple = ['get', 'post', 'put', 'delete'];
 
-type ParameterInTuple = ["path", "query", "body", "header"];
+type ParameterInTuple = ['path', 'query', 'body', 'header'];
 
 declare namespace SwaggerV2 {
-
   type Options = {
     // 要转化的api的根路径
     baseUrl: string;
@@ -26,14 +25,23 @@ declare namespace SwaggerV2 {
     schema?: Schema.AllSchemaWithRef;
   } & Schema.AllSchema;
 
-  type ResponseType = {
-    "200": {
-      description?: "OK";
-      schema?: Schema.AllSchemaWithRef;
-    };
+  type ResponseType<T> = {
+    '200': {
+      description?: 'OK';
+    } & (T extends 'V2'
+      ? {
+          schema?: Schema.AllSchemaWithRef;
+        }
+      : {
+          content: {
+            'application/json': {
+              schema?: Schema.AllSchemaWithRef;
+            };
+          };
+        });
   };
 
-  type ApiInfo = {
+  type ApiInfo<T extends string = 'V2'> = {
     /* API名称 */
     summary?: string;
     /* API所属模块 */
@@ -44,20 +52,28 @@ declare namespace SwaggerV2 {
     operationId: string;
     /* 请求参数（2.0版本都用这个字段存请求参数） */
     parameters?: ParameterType[];
-    responses: ResponseType;
-    responsesObject: ResponseType;
+    responses: ResponseType<T>;
+    requestBody?: T extends 'V2'
+      ? never
+      : {
+          content: {
+            'application/json': {
+              schema?: Schema.AllSchemaWithRef;
+            };
+          };
+        };
   };
 
-  type ReqMethodMap = Record<ReqMethod, ApiInfo>;
+  type ReqMethodMap<T extends string = 'V2'> = Record<ReqMethod, ApiInfo<T>>;
 
-  type ApiDocument = {
-    swagger: string;
-    paths: Record<string, Partial<ReqMethodMap>>;
+  type ApiDocument<T extends string = 'V2'> = {
+    swagger: T extends 'V2' ? '2.0' : never;
+    paths: Record<string, Partial<ReqMethodMap<T>>>;
     definitions: Record<string, Schema.ObjectSchema>;
   };
 
   type ParsedReqApiInfo = Partial<
-    Record<Exclude<ParameterType["in"], "header">, Schema.ParsedSchema[]>
+    Record<Exclude<ParameterType['in'], 'header'>, Schema.ParsedSchema[]>
   >;
 
   type ParsedApiInfo = {
@@ -71,7 +87,7 @@ declare namespace SwaggerV2 {
 
   type ReqPayload = {
     payload: string[];
-    payloadTypeName: "data" | "params" | null;
+    payloadTypeName: 'data' | 'params' | null;
     resTypeName: string | null;
     url: string;
   };

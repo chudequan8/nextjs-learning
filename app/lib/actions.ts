@@ -115,3 +115,16 @@ export async function deleteInvoice(id: string) {
     return { message: 'Database Error: Failed to Delete Invoice.' };
   }
 }
+
+// export async function createApiDocs(params:type) {
+//   try {
+//     await sql`
+//       INSERT INTO invoices (customer_id, amount, status, date)
+//       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+//     `;
+//   } catch (error) {
+//     return {
+//       message: 'Database Error: Failed to Create Invoice.',
+//     };
+//   }
+// }

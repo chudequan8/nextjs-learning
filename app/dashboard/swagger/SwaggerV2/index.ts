@@ -1,4 +1,4 @@
-import { translateTypeNames} from '@/app/lib/data';
+import { translateTypeNames } from '@/app/lib/data';
 import { formatTsString } from '@/app/utils/format';
 import pascalcase from 'pascalcase';
 
@@ -20,19 +20,17 @@ const chineseCharRegex = /[\u4e00-\u9fff]/g;
 const genericTypeReg = new RegExp(/(?<=«)[^》]+(?=»)/g);
 
 class SwaggerV2ToTs {
-  private swaggerApi: SwaggerV2.ApiDocument;
+  private swaggerApi: SwaggerV2.ApiDocument | SwaggerV2.ApiDocument<'V3'>;
   private options: SwaggerV2.Options;
+  private version: number;
   private _curGenericType: string | null = null;
   _nameMap: Map<string, string | null> = new Map();
   _enumMap: Map<string, string | null> = new Map();
-  private _getedSchemaMap: Record<
-    string,
-    Schema.ParsedObjectSchema
-  > = {};
+  private _getedSchemaMap: Record<string, Schema.ParsedObjectSchema> = {};
   private _generatedTypes: Record<string, string> = {};
 
   constructor(
-    swagger: SwaggerV2.ApiDocument,
+    swagger: SwaggerV2.ApiDocument | SwaggerV2.ApiDocument<'V3'>,
     options?: Partial<SwaggerV2.Options>,
   ) {
     this.swaggerApi = swagger;
@@ -40,24 +38,23 @@ class SwaggerV2ToTs {
     if (this.options.moduleName) {
       this.options.typePrefix = `API.${pascalcase(this.options.moduleName)}`;
     }
+    this.version = this.swaggerApi.swagger === '2.0' ? 2 : 3;
   }
 
   private _isObject(value: unknown): value is Schema.AllSchemaWithRef {
     return Object.prototype.toString.call(value) === '[object Object]';
   }
 
-  _isParsedObjectSchema(
-    schema?: unknown,
-  ): schema is Schema.ParsedObjectSchema {
+  _isParsedObjectSchema(schema?: unknown): schema is Schema.ParsedObjectSchema {
     if (!schema) {
       return false;
     }
-    return schema.hasOwnProperty('properties');
+    return schema.hasOwnProperty('properties') && schema.hasOwnProperty('name');
   }
 
   private _isParsedArraySchema(
     schema?: unknown,
-  ): schema is Schema.ArraySchema<'parsed'> {
+  ): schema is Schema.ParsedArraySchema {
     if (!schema) {
       return false;
     }
@@ -71,6 +68,21 @@ class SwaggerV2ToTs {
       return false;
     }
     return schema.hasOwnProperty('$ref');
+  }
+
+  // 3.0版本没有 originalRef 属性，统一两个版本的 refSchema
+  private _toStandard(schema: Schema.RefSchema) {
+    const { $ref, originalRef, ...other } = schema;
+    const decodedRef = decodeURIComponent($ref);
+    const refNameStartIndex = decodedRef.lastIndexOf('/') + 1;
+    if (refNameStartIndex === 0) {
+      throw new Error(`${$ref} is not valid`);
+    }
+    return {
+      $ref: decodedRef,
+      originalRef: decodedRef.slice(refNameStartIndex),
+      ...other,
+    };
   }
 
   // private async _transformName() {
@@ -97,16 +109,23 @@ class SwaggerV2ToTs {
   private async _transformNameByYouDao() {
     const toTransformNameList = Array.from(this._nameMap.keys());
     console.log('_transformNameByYouDao', toTransformNameList);
+    if (toTransformNameList.length === 0) {
+      return;
+    }
     const res = await translateTypeNames(toTransformNameList);
     if (res.translateResults?.length) {
       try {
         if (res.translateResults.length === toTransformNameList.length) {
           // 所有中文都翻译完了，塞回Map里面去
           toTransformNameList.forEach((name, index) => {
-            const translationText = res.translateResults?.[index]?.translation as string;
-            const pascalcaseName = translationText.split(" ").map(n => pascalcase(n)).join("");
+            const translationText = res.translateResults?.[index]
+              ?.translation as string;
+            const pascalcaseName = translationText
+              .split(' ')
+              .map((n) => pascalcase(n))
+              .join('');
             this._nameMap.set(name, pascalcaseName);
-          })
+          });
         } else {
           console.log('youdao transform error', res.errorCode);
         }
@@ -160,32 +179,58 @@ class SwaggerV2ToTs {
       }
       curSchema = curSchema[curPath];
     }
-    return [curPath.replaceAll("-", ""), curSchema as Schema.ParsedSchema];
+    return [curPath.replaceAll('-', ''), curSchema as Schema.ParsedSchema];
   }
 
-  generateSchemaLoop(rootSchema: Schema.AllSchemaWithRef): Schema.ParsedSchema | null {
-    if (this._isParsedArraySchema(rootSchema) && this._isRefSchema(rootSchema.items)) {
-      // 添加泛型标识，后续要转成'T'
-      if (this._curGenericType && rootSchema.items["originalRef"] === this._curGenericType) {
-        const { items, type, ...other } = rootSchema;
+  // 添加泛型标识，后续要转成'T'
+  _matchGenericSchema(
+    schema: Schema.AllSchemaWithRef,
+  ): Schema.GenericSchema | null {
+    if (!this._curGenericType) {
+      return null;
+    }
+
+    if (this._isRefSchema(schema)) {
+      const standardRefSchema = this._toStandard(schema);
+      if (standardRefSchema['originalRef'] === this._curGenericType) {
+        const { originalRef, $ref, ...other } = standardRefSchema;
         return {
           ...other,
-          type: "generic",
+          type: 'generic',
         };
       }
     }
-    if (this._isRefSchema(rootSchema)) {
-      // 添加泛型标识，后续要转成'T'
-      if (this._curGenericType && rootSchema["originalRef"] === this._curGenericType) {
-        const { originalRef, $ref, ...other } = rootSchema;
+    if (this._isParsedArraySchema(schema) && this._isRefSchema(schema.items)) {
+      const standardRefSchema = this._toStandard(schema.items);
+      if (standardRefSchema['originalRef'] === this._curGenericType) {
+        const { items, type, ...other } = schema;
         return {
           ...other,
-          type: "generic",
+          type: 'generic',
+          // returnType: "List"
         };
       }
-      const [schemaName, schema] = this._getRealSchema(rootSchema['$ref']);
+    }
+    return null;
+  }
 
-      const name = ((rootSchema as any).name || schemaName)?.replaceAll("-", "");
+  generateSchemaLoop(
+    rootSchema: Schema.AllSchemaWithRef,
+  ): Schema.ParsedSchema | null {
+    const matchedSchema = this._matchGenericSchema(rootSchema);
+    if (matchedSchema) {
+      return matchedSchema;
+    }
+    if (this._isRefSchema(rootSchema)) {
+      const standardRefSchema = this._toStandard(rootSchema);
+      const [schemaName, schema] = this._getRealSchema(
+        standardRefSchema['$ref'],
+      );
+
+      const name = ((rootSchema as any).name || schemaName)?.replaceAll(
+        '-',
+        '',
+      );
 
       if (this._getedSchemaMap[name]) {
         return {
@@ -217,8 +262,14 @@ class SwaggerV2ToTs {
 
     return Object.entries(rootSchema || {}).reduce((target, [key, value]) => {
       if (this._isObject(value)) {
-        if (key.toLowerCase().includes("status") && value.hasOwnProperty("description")) {
-          this._enumMap.set((value as Schema.ParsedSchema).description as string, null);
+        if (
+          key.toLowerCase().includes('status') &&
+          value.hasOwnProperty('description')
+        ) {
+          this._enumMap.set(
+            (value as Schema.ParsedSchema).description as string,
+            null,
+          );
         }
         return {
           ...target,
@@ -232,10 +283,31 @@ class SwaggerV2ToTs {
     }, {}) as Schema.ParsedSchema;
   }
 
+  _getReqSchema(
+    apiInfo: SwaggerV2.ApiInfo | SwaggerV2.ApiInfo<'V3'>,
+  ): SwaggerV2.ApiInfo {
+    if (this.version === 2) {
+      return apiInfo as SwaggerV2.ApiInfo;
+    }
+    const { parameters, requestBody, ...other } = apiInfo;
+    const reqBodySchema = requestBody?.content?.['application/json'];
+    const mergedParameters = parameters?.slice() || [];
+    if (reqBodySchema) {
+      mergedParameters.push({
+        in: 'body',
+        ...reqBodySchema,
+      } as any);
+    }
+    return {
+      ...other,
+      parameters: mergedParameters,
+    } as SwaggerV2.ApiInfo;
+  }
+
   _generateReqSchema(
     apiInfo: SwaggerV2.ApiInfo,
   ): SwaggerV2.ParsedReqApiInfo | null {
-    const { parameters, operationId, summary, description } = apiInfo;
+    const { parameters, operationId, summary, description } = this._getReqSchema(apiInfo);
     if (!parameters || !parameters.length) {
       return null;
     }
@@ -257,7 +329,8 @@ class SwaggerV2ToTs {
       const { in: parametersIn, schema, required = false, ...other } = item;
       // 都是普通类型的schema，用一个object来装
       if (this._isRefSchema(schema)) {
-        const schemaObj = this.generateSchemaLoop(schema);
+        const standardRefSchema = this._toStandard(schema);
+        const schemaObj = this.generateSchemaLoop(standardRefSchema);
         return {
           ...target,
           [parametersIn]: [...(target[parametersIn] || []), schemaObj],
@@ -310,12 +383,12 @@ class SwaggerV2ToTs {
       this.options.extractType &&
       new RegExp(`^${this.options.extractType}«.*»$`).test(matchStr)
     ) {
-      matchStr = matchStr.match(genericTypeReg)?.[0] || "";
+      matchStr = matchStr.match(genericTypeReg)?.[0] || '';
     }
     const typeArr: any[] = [];
     while (matchStr.length) {
       if (matchStr) {
-        if (["Void", "string"].includes(matchStr)) {
+        if (['Void', 'string'].includes(matchStr)) {
           typeArr.push({
             name: matchStr,
             type: matchStr.toLowerCase(),
@@ -324,18 +397,18 @@ class SwaggerV2ToTs {
         }
         // Map类型的先不处理了
         if (/^Map«.*»$/.test(matchStr)) {
-          matchStr = matchStr.match(genericTypeReg)?.[0] || "";
+          matchStr = matchStr.match(genericTypeReg)?.[0] || '';
           typeArr.push({
             name: matchStr,
-            type: "object",
-            returnType: "Map",
+            type: 'object',
+            returnType: 'Map',
           });
           break;
         }
         let returnType: string | null = null;
         if (/^List«.*»$/.test(matchStr)) {
-          matchStr = matchStr.match(genericTypeReg)?.[0] || "";
-          returnType = "List";
+          matchStr = matchStr.match(genericTypeReg)?.[0] || '';
+          returnType = 'List';
         }
         typeArr.push({
           name: matchStr,
@@ -347,7 +420,7 @@ class SwaggerV2ToTs {
             : {}),
         });
       }
-      matchStr = matchStr.match(genericTypeReg)?.[0] || "";
+      matchStr = matchStr.match(genericTypeReg)?.[0] || '';
     }
     // console.log("typeArr", typeArr);
     const typeWithGenericList = typeArr.map((item, index) => {
@@ -356,9 +429,11 @@ class SwaggerV2ToTs {
         const next = typeArr[index + 1];
         let extendItem = item;
         if (next) {
-          const nextName = next.returnType ? `${next.returnType}«${next.name}»` : next.name;
+          const nextName = next.returnType
+            ? `${next.returnType}«${next.name}»`
+            : next.name;
           extendItem = {
-            name: name.replace(`«${nextName}»`, ""),
+            name: name.replace(`«${nextName}»`, ''),
             $ref,
           };
           this._curGenericType = next.name;
@@ -366,7 +441,7 @@ class SwaggerV2ToTs {
         const parsedSchema = this.generateSchemaLoop(extendItem);
         this._curGenericType = null;
         if (!!next && parsedSchema === null) {
-          console.log("parsedSchema", extendItem);
+          console.log('parsedSchema', extendItem);
         }
         const genericSchema = {
           ...other,
@@ -384,27 +459,47 @@ class SwaggerV2ToTs {
     return typeWithGenericList;
   }
 
-  _generateResSchema(apiInfo: SwaggerV2.ApiInfo) {
-    const resSchema = apiInfo.responses?.['200']?.schema;
+  _getResSchema(
+    apiInfo: SwaggerV2.ApiInfo | SwaggerV2.ApiInfo<'V3'>,
+  ): Schema.AllSchemaWithRef | null {
+    return (
+      (this.version === 2
+        ? (apiInfo as SwaggerV2.ApiInfo).responses?.['200']?.schema
+        : (apiInfo as SwaggerV2.ApiInfo<'V3'>).responses?.['200']?.content?.[
+            'application/json'
+          ]?.schema) || null
+    );
+  }
+  _generateResSchema(resSchema: Schema.AllSchemaWithRef | null) {
     if (!resSchema) {
       return null;
     }
     // 如果是泛型，需要对每一个类型都生成一个schema
-    if (this._isRefSchema(resSchema) && genericTypeReg.test(resSchema.originalRef)) {
-      return this._generateGenericTypeList(resSchema.$ref, resSchema.originalRef);
+    if (this._isRefSchema(resSchema)) {
+      const standardRefSchema = this._toStandard(resSchema);
+      if (genericTypeReg.test(standardRefSchema.originalRef)) {
+        return this._generateGenericTypeList(
+          standardRefSchema.$ref,
+          standardRefSchema.originalRef,
+        );
+      }
     }
     const parsedResSchema = this.generateSchemaLoop(resSchema);
     return parsedResSchema ? [parsedResSchema] : null;
   }
 
   _getResTypeName(resSchemaList: Schema.ParsedSchema[] | null) {
-    const resTypeNameList = (resSchemaList || []).map((item) => this.generateTypeValue(item, true));
+    const resTypeNameList = (resSchemaList || []).map((item) =>
+      this.generateTypeValue(item, true),
+    );
     let resTypeName: string | null = null;
     while (resTypeNameList.length > 0) {
       const currentType = resTypeNameList.pop() as string;
-      resTypeName = resTypeName ? `${currentType}<${resTypeName}>` : currentType;
+      resTypeName = resTypeName
+        ? `${currentType}<${resTypeName}>`
+        : currentType;
     }
-    return resTypeName
+    return resTypeName;
   }
 
   _getReqPayload(parsedApi: SwaggerV2.ParsedApiInfo) {
@@ -415,7 +510,7 @@ class SwaggerV2ToTs {
       // 参数：id, data
       payload: [],
       payloadTypeName: null,
-      resTypeName: this._getResTypeName(res)
+      resTypeName: this._getResTypeName(res),
     };
 
     if (!req || (!req.path && !req.body && !req.query)) {
@@ -499,7 +594,6 @@ class SwaggerV2ToTs {
       throw new Error('请提供模块名');
     }
     const startPath = `${baseUrl}${moduleName}`;
-
     const swaggerDocsByModule = Object.entries(this.swaggerApi.paths)
       .map(([path, reqMethodMap]) => {
         if (path.includes(startPath)) {
@@ -515,13 +609,33 @@ class SwaggerV2ToTs {
             description: description || summary,
             operationId,
             req: this._generateReqSchema(apiInfo),
-            res: this._generateResSchema(apiInfo),
+            res: this._generateResSchema(this._getResSchema(apiInfo)),
           };
         }
         return undefined;
       })
       .filter(Boolean) as SwaggerV2.ParsedApiInfo[];
     return swaggerDocsByModule;
+  }
+
+  _getTodoSchemasByModule(swaggerDocsByModule: SwaggerV2.ParsedApiInfo[]) {
+    const todoSchemas = swaggerDocsByModule
+      .flatMap((swaggerDoc) => {
+        const { req, res } = swaggerDoc;
+        const todoResSchemas = res || [];
+        if (!req) {
+          return todoResSchemas;
+        }
+        const { query = [], path = [], body = [] } = req;
+        const todoReqSchemas = [...query, ...path, ...body];
+        return [...todoReqSchemas, ...todoResSchemas];
+      })
+      .filter((n) => {
+        // 原先的逻辑是这样的，如果是arrarschema的话可能会漏掉
+        // (schema.type === "object" && schema.properties) || Boolean(n.generic)
+        return this._isParsedObjectSchema(n);
+      });
+    return todoSchemas;
   }
 
   async generateReqMethodList(parsedApis: SwaggerV2.ParsedApiInfo[]) {
@@ -553,8 +667,8 @@ class SwaggerV2ToTs {
   ): string {
     const { type, returnType } = value;
     switch (type) {
-      case "generic": {
-        return "T";
+      case 'generic': {
+        return 'T';
       }
       case 'array': {
         const { items } = value;
@@ -569,8 +683,8 @@ class SwaggerV2ToTs {
       case 'object': {
         if (this._isParsedObjectSchema(value)) {
           const typeName = this._nameMap.get(value.name) || value.name;
-          return `${addPrefix ? `${this.options.typePrefix}.` : ""}${typeName}${
-            returnType === "List" ? "[]" : ""
+          return `${addPrefix ? `${this.options.typePrefix}.` : ''}${typeName}${
+            returnType === 'List' ? '[]' : ''
           }`;
         }
         return 'Record<string, any>';
@@ -579,22 +693,28 @@ class SwaggerV2ToTs {
         return 'number';
       case 'boolean':
         return 'boolean';
-      case "void":
-        return "null";
+      case 'void':
+        return 'null';
       case 'string':
       default:
         return 'string';
     }
   }
 
-  async generateTypeList(schemas: Schema.ParsedSchema[]) {
-    const todoTypes = schemas.slice();
+  async generateTypeList(swaggerDocsByModule: SwaggerV2.ParsedApiInfo[]) {
+    const todoSchemas = this._getTodoSchemasByModule(swaggerDocsByModule);
+    const todoTypes = todoSchemas.slice();
     const finishedTypes: Record<string, string> = {};
 
     while (todoTypes.length) {
       const curSchema = todoTypes.shift() as Schema.ParsedSchema;
       if (this._isParsedObjectSchema(curSchema)) {
-        const { name, properties = {}, description, generic = false } = curSchema;
+        const {
+          name,
+          properties = {},
+          description,
+          generic = false,
+        } = curSchema;
         const typeName = this._nameMap.get(name) || name;
         if (!typeName || finishedTypes[typeName]) {
           continue;
@@ -622,9 +742,9 @@ class SwaggerV2ToTs {
             })
             .join('');
 
-            const typeString = `
+          const typeString = `
               /* ${description || typeName} */
-              export type ${typeName.replaceAll("-", "")}${generic ? "<T>" : ""} = {
+              export type ${typeName.replaceAll('-', '')}${generic ? '<T>' : ''} = {
                 ${typeBody}
               }
             `;

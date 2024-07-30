@@ -1,42 +1,36 @@
-import {
-  SwaggerDocsResponse,
-  LinkSchema,
-  ReqMethodMap,
-  SwaggerDocsInfo,
-} from '../lib/definitions';
+import { readFile } from 'node:fs/promises';
 
-export const isLinkSchema = (schema: any): schema is LinkSchema => {
-  return schema.hasOwnProperty('$ref');
-};
-
-export const getRealSchema = (path: string, resObj: SwaggerDocsResponse) => {
-  const pathList = path.replace('#/', '').split('/');
-  let curSchema: Record<string, any> = resObj;
-  let curPath: string | undefined = undefined;
-  while (pathList.length && !!curSchema) {
-    curPath = pathList.shift() as string;
-    curSchema = curSchema[curPath];
+export const readSwaggerDocs = async (id: number) => {
+  try {
+    const filePath = `./public/swagger/${id}.json`;
+    const contents = await readFile(filePath, { encoding: 'utf8' });
+    const swaggerDocs = JSON.parse(contents) as SwaggerV2.ApiDocument;
+    return swaggerDocs
+  } catch (err) {
+    console.error('读取swagger文件失败:', err);
+    return null;
   }
+}
 
-  return [replaceType(curPath as string), curSchema as any] as const;
-};
+export const getModuleNameListByBaseUrl = (paths: SwaggerV2.ApiDocument["paths"], baseUrl: string) => {
 
-export const getReq = (reqMethodObj: ReqMethodMap) => {
-  return Object.entries(reqMethodObj)
-    .filter(([key]) => ['get', 'post', 'put'].includes(key))
-    .flatMap(([key, val]) => [key, val]) as [
-    keyof ReqMethodMap,
-    SwaggerDocsInfo,
-  ];
-};
-
-export const replaceType = (typeString: string) => {
-  const typeReg = new RegExp(/«([^«»]*)»/g);
-  let targetString = typeString;
-
-  while (typeReg.test(targetString)) {
-    targetString = targetString.replace(typeReg, '');
-  }
-
-  return targetString;
-};
+  const moduleNameList = Object.keys(paths || {}).reduce(
+    (target, current) => {
+      if (!current.startsWith(baseUrl)) {
+        return target;
+      }
+      const pathNameList = current.replace(baseUrl, '').split('/');
+      if (
+        pathNameList[0] &&
+        !target.includes(pathNameList[0]) &&
+        pathNameList.length >= 2
+      ) {
+        return [...target, pathNameList[0]];
+      }
+      return target;
+    },
+    [] as string[],
+  );
+  
+  return moduleNameList;
+}

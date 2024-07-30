@@ -5,72 +5,57 @@ declare namespace Schema {
   };
 
   type IntSchema = BaseSchema & {
-    type: "integer";
-    format: "int32" | "int64";
+    type: 'integer';
+    format: 'int32' | 'int64';
   };
 
   type BooleanSchema = BaseSchema & {
-    type: "boolean";
+    type: 'boolean';
   };
 
   type VoidSchema = BaseSchema & {
-    type: "void";
+    type: 'void';
   };
 
   type StringSchema = BaseSchema & {
-    type: "string";
-    format?: "binary" | "date-time";
+    type: 'string';
+    format?: 'binary' | 'date-time';
   };
 
   type FileSchema = BaseSchema & {
-    type: "file";
+    type: 'file';
   };
 
-  type ObjectSchema<T extends string = "init"> = BaseSchema & {
-    type: "object";
-    name: T extends "init" ? string | undefined : string;
+  type ObjectSchema<T extends string = 'init'> = BaseSchema & {
+    type: 'object';
+    name: T extends 'init' ? string | undefined : string;
     properties?: Record<
       string,
-      | IntSchema
-      | BooleanSchema
-      | VoidSchema
-      | StringSchema
-      | ObjectSchema<T>
-      | ArraySchema<T>
-      | GenericSchema
-      | (T extends "init" ? RefSchema : never)
+      AllSchema<T> | (T extends 'init' ? RefSchema : never)
     >;
     required?: string[];
     title?: string;
     generic?: boolean;
   };
 
-  type ArraySchema<T extends string = "init"> = BaseSchema & {
-    type: "array";
-    items:
-      | IntSchema
-      | BooleanSchema
-      | VoidSchema
-      | StringSchema
-      | ObjectSchema<T>
-      | ArraySchema<T>
-      | GenericSchema
-      | (T extends "init" ? RefSchema : never);
+  type ArraySchema<T extends string = 'init'> = BaseSchema & {
+    type: 'array';
+    items: AllSchema<T> | (T extends 'init' ? RefSchema : never);
     /* 只有在type为array时才有这个字段 */
-    collectionFormat?: "multi";
+    collectionFormat?: 'multi';
   };
 
-  type AllSchema =
+  type AllSchema<T extends string = 'init'> =
+    | IntSchema
     | BooleanSchema
     | VoidSchema
-    | IntSchema
     | StringSchema
-    | ObjectSchema
-    | ArraySchema
+    | ObjectSchema<T>
+    | ArraySchema<T>
     | GenericSchema;
 
   type GenericSchema = BaseSchema & {
-    type: "generic";
+    type: 'generic';
   };
 
   type RefSchema = {
@@ -80,17 +65,10 @@ declare namespace Schema {
 
   type AllSchemaWithRef = AllSchema | RefSchema;
 
-  type ParsedSchema = (
-    | BooleanSchema
-    | VoidSchema
-    | IntSchema
-    | StringSchema
-    | GenericSchema
-    | ObjectSchema<"parsed">
-    | ArraySchema<"parsed">
-  ) & {
+  type ParsedArraySchema = ArraySchema<'parsed'>;
+  type ParsedObjectSchema = ObjectSchema<'parsed'>;
+
+  type ParsedSchema = AllSchema<'parsed'> & {
     returnType?: string;
   };
-  type ParsedArraySchema = ArraySchema<"parsed">;
-  type ParsedObjectSchema = ObjectSchema<"parsed">;
 }
