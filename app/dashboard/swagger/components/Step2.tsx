@@ -172,7 +172,7 @@ export default async function Step2Page(props: Step2Props) {
           return swaggerToTs._isParsedObjectSchema(n)
         }
       );
-      typeString = await swaggerToTs.generateTypeList(todoSchemas);
+      typeString = await swaggerToTs.generateTypeList(todoSchemas as any);
       transformContent = todoSchemas;
   }
 
