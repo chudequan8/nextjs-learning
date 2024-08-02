@@ -18,14 +18,14 @@ export const useFieldFetchData = (props: any) => {
     [props.params],
   );
 
-  const { data, isValidating } = useSWR(
+  const { data, isValidating } = useSWR<any, any, any>(
     () => {
       if (typeof props.options !== 'function') {
         return null;
       }
       return swrKey;
     },
-    (_, params) => {
+    (_: any, params: any) => {
       return props.options(
         {
           ...params,
