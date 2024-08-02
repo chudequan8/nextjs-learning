@@ -1,5 +1,5 @@
 # 第一阶段：构建
-FROM node AS builder
+FROM node:lts AS builder
 WORKDIR /app
 COPY . .
 RUN npm install -g pnpm
@@ -7,7 +7,7 @@ RUN pnpm install --shamefully-hoist
 RUN pnpm run build
 
 # 第二阶段：运行时
-FROM node
+FROM node:lts
 WORKDIR /app
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
