@@ -2,8 +2,9 @@
 FROM node AS builder
 WORKDIR /app
 COPY . .
-RUN npm ci
-RUN npm run build
+RUN npm install -g pnpm
+RUN pnpm install --shamefully-hoist
+RUN pnpm run build
 
 # 第二阶段：运行时
 FROM node
