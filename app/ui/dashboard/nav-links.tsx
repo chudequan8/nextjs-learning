@@ -5,7 +5,8 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
   TrashIcon,
-  MusicalNoteIcon
+  MusicalNoteIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -23,6 +24,7 @@ const links = [
   { name: '接口文档管理', href: '/dashboard/customers', icon: UserGroupIcon },
   { name: 'Swagger', href: '/dashboard/swagger', icon: TrashIcon },
   { name: '日语歌词管理', href: '/dashboard/lyrics', icon: MusicalNoteIcon },
+  { name: 'FHIR', href: '/dashboard/fhir', icon: DocumentTextIcon },
 ];
 
 export default function NavLinks() {
