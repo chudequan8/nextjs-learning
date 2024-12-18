@@ -18,7 +18,7 @@ export default async function Page({
   };
   }) {
   
-  const jsonSchemaToTs = new JsonSchemaToTs(fhirSchema)
+  const jsonSchemaToTs = new JsonSchemaToTs(fhirSchema as any)
 
   const resourceName = searchParams?.resource || 'Condition'
   const dqdq = jsonSchemaToTs.generateSchemaByResourceName(resourceName);
